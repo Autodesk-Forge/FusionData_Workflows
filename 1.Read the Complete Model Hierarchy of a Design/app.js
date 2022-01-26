@@ -1,5 +1,7 @@
+// Axios is a promise-based HTTP client for the browser and node.js. 
 import axios from "axios";
 
+// Application constructor 
 export default class App {
   constructor(accessToken) {
     //this.host = "https://developer-stg.api.autodesk.com/";

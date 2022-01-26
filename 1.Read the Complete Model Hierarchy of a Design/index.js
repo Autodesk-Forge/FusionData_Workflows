@@ -1,15 +1,21 @@
 import MyApp from './app.js'; 
 import MyAuth from './auth.js';
 
-const clientId = '';
-const clientSecret = '';
-const hubId = '';
-const projectId = '';
-const dmVersionId = 'urn:adsk.wipprod:fs.file:vf.Z8yfPsjdSR6-Y2VlJAvd_g?version=1';
+// Replace the string literal values with your own client ID, client secret, 
+// hub ID, project ID and item version ID. 
 
+const clientId = '<YOUR_CLIENT_ID>';
+const clientSecret = '<YOUR_CLIENT_SECRET>';
+const hubId = '<YOUR_HUB_ID>';
+const projectId = '<YOUR_PROJECT_ID>';
+const dmVersionId = '<YOUR_ITEM_ID>';
+
+// Create an instance of auth.js.
 let myForgeAuth = new MyAuth(clientId, clientSecret);
+// Get an access token from your auth.js instance. 
 let accessToken = await myForgeAuth.getAccessToken(); 
 
+// Create an instance of app.js using the variable set above. 
 let myForgeApp = new MyApp(
   accessToken
 );

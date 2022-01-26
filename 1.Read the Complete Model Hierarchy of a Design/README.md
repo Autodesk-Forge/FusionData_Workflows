@@ -1,4 +1,4 @@
-# Traversing PIM to find Product Assets
+# Read the Complete Model Hierarchy of a Design
 
 ## Setting up your test
 In the **terminal** run this to install all the necessary components
@@ -9,7 +9,7 @@ npm i
 You will need to set the value of `clientId` and `clientSecret` variables in `index.js` based on your **Forge app**'s credentials and make sure that the `CallBack URL` of the app is set to `http://localhost:3000/callback/oauth` as shown in the picture \
 ![Get 3-legged token](./readme/ForgeCredentials.png)
 
-You will also need to set the value of `dmVersionId` variables that you can get using the `data.property` function in the **'Text Commands'** palette in **Fusion 360** \
+You will also need to set the value of `hubId`, `projectId` and `dmVersionId` variables that you can get using the `data.property` function in the **'Text Commands'** palette in **Fusion 360** \
 
 ![Get version id](./readme/dmVersion.png) 
 
