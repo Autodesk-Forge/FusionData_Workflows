@@ -1,7 +1,7 @@
 import MyApp from './app.js'; 
 import MyAuth from './auth.js';
 
-const clientId = '8kAAlxHgPEIYLQuYSc0EuEAL0gqYQVkv';
+const clientId = '';
 const clientSecret = '';
 const hubId = '';
 const projectId = '';
