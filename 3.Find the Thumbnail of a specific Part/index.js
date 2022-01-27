@@ -6,9 +6,9 @@ import MyAuth from './auth.js';
 
 const clientId = '<YOUR_CLIENT_ID>';
 const clientSecret = '<YOUR_CLIENT_SECRET>';
-const hubId = '<YOUR_HUB_ID>';
-const projectId = '<YOUR_PROJECT_ID>';
-const dmVersionId = '<YOUR_ITEM_ID>';
+const hubName = '<YOUR_HUB_NAME>';
+const projectName = '<YOUR_PROJECT_NAME>';
+const versionId = '<YOUR_VERSION_ID>';
 const partNumber = '<YOUR_PART_NUMBER>';
 
 // Create an instance of auth.js.
@@ -21,17 +21,14 @@ let myForgeApp = new MyApp(
   accessToken
 );
 
-const collectionIds = await myForgeApp.getThumbnail();
+const url = await myForgeApp.getThumbnail(
+  hubName,
+  projectName,
+  versionId,
+  partNumber
+);
 
-for (const collection of collectionIds) {
-    console.log(`\nChecking for part in collection with id = ${collection.id} [associated with hub "${collection.hubName}"] ...`)
-    let material = await myForgeApp.getMaterialOfPart(collection.id, partNumber);
-    if (!material) {
-        console.log(`Part Number "${partNumber}" was not found in this collection.`);
-    } else {
-        console.log(`Material of part with Part Number "${partNumber}" is "${material}"`);
-    }
-}
+console.log("Open image URL in browser: " + url);
 
 
 

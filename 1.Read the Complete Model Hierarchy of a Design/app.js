@@ -110,7 +110,8 @@ export default class App {
 
   getSubComponents = async (components, modelReferences) => {
     modelReferences.forEach(occurrence => {
-      components[occurrence.component.id] = null;
+      if (components[occurrence.component.id] === undefined)
+        components[occurrence.component.id] = null;
     })
 
     let query = "query {";
