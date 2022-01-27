@@ -1,4 +1,4 @@
-# Find the Material of a specific Part
+# Find the Thumbnail of a specific Part
 
 This sample allows you to get the material of a part, by providing its part number.
 

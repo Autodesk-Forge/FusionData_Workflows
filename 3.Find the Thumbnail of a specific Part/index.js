@@ -6,6 +6,9 @@ import MyAuth from './auth.js';
 
 const clientId = '<YOUR_CLIENT_ID>';
 const clientSecret = '<YOUR_CLIENT_SECRET>';
+const hubId = '<YOUR_HUB_ID>';
+const projectId = '<YOUR_PROJECT_ID>';
+const dmVersionId = '<YOUR_ITEM_ID>';
 const partNumber = '<YOUR_PART_NUMBER>';
 
 // Create an instance of auth.js.
@@ -15,10 +18,10 @@ let accessToken = await myForgeAuth.getAccessToken();
 
 // Create an instance of app.js using the variable set above. 
 let myForgeApp = new MyApp(
-  accessToken,
+  accessToken
 );
 
-const collectionIds = await myForgeApp.getCollectionIds();
+const collectionIds = await myForgeApp.getThumbnail();
 
 for (const collection of collectionIds) {
     console.log(`\nChecking for part in collection with id = ${collection.id} [associated with hub "${collection.hubName}"] ...`)
