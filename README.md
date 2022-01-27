@@ -10,53 +10,21 @@
 
 ---
 
-This repository contains several samples illustrating use of [Forge Graph](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/) API and [Forge Data Events](https://forge.autodesk.com/en/docs/fevnt/v1/developers_guide/overview/) API in context of PIM workflow:
+This repository contains several samples illustrating use of Forge GraphQL API in context of PIM workflow:
 
-1. [Subscribe to PIM data events](./1.Subscribe%20to%20PIM%20data%20events) 
+1. [Read the Complete Model Hierarchy of a Design](./1.Read%20the%20Complete%20Model%20Hierarchy%20of%20a%20Design) 
 
-   -  subscribe to multiple events and get notifications 
-		when scene, snapshot, relationships, assets are created or updated
+   -  based on the **version id** of a given model you can get the full model hierarchy - similar to what is shown inside **Fusion 360**.
 
 
-2. [Know when a Milestone has been created](./2.Know%20when%20a%20Milestone%20has%20been%20created)
+2. [Know when a Milestone is Available](./2.Know%20When%20a%20New%20Milestone%20is%20Available)
 	
-   - subscribe to a Snapshot entity and set a [Forge Data Events filter](https://forge.autodesk.com/en/docs/fevnt/v1/developers_guide/event_filters/) 
-		to be notified only of those satisfying a certain criteria.
+   - subscribe to the `milestone.created` event of a specific model in order to be notified when a milestone is created for a given version of it.
 
 
-3. [Know when the Life Cycle state changes](./3.Know%20when%20the%20Life%20Cycle%20state%20changes)
+3. [Find the Thumbnail of a specific Part](./3.Find%20the%20Thumbnail%20of%20a%20specific%20Part)
    
-	- subscribe to receive notifications for changes to the lifecycle asset. 
-   
-
-4. [Find the Material of a specific Part](./4.Find%20the%20Material%20of%20a%20specific%20Part)
-
-   - get the material of a part, by providing its part number.
-	- illustrates how to get different entities using [Forge Graph query filters](https://forge.autodesk.com/en/docs/forgeag/v1/reference/http/forgeag-assets-GET/#query-string-parameters). 
-
-
-5. [Inspecting the PIM data model of any Fusion model version](./5.Inspecting the PIM data model of any Fusion model version)
-
-	- use the model version URN, to inspect the PIM data model;
-	- illustrates how to use [Forge Graph closure-queries](https://forge.autodesk.com/en/docs/forgeag/v1/reference/http/forgeag-assetsget-closure-POST/).
-
-
-6. [Find what Part properties have changed](./6.Find%20what%20Part%20properties%20have%20changed)
-
-	- poll for changed properties, when you change something in the model;
-	- illustrates how to use [Forge Graph sync](https://forge.autodesk.com/en/docs/forgeag/v1/reference/http/forgeag-collections-collectionIdsync-POST/) endpoint.
-
-
-7. [Traversing PIM to find Product Assets](./7.Traversing%20PIM%20to%20find%20Product%20Assets)
-
-	- get with code the structure of an assembly;
-	- illustrates how to use [closure-queries](https://forge.autodesk.com/en/docs/forgeag/v1/reference/http/forgeag-assetsget-closure-POST/).
-
-
-8. [Find and inspect PIM data in visual way](./8.Integration%20with%20other%20Forge%20APIs)
-
-    - this sample is part of [Learn Forge](http://learnforge.autodesk.io) tutorials and has been extended with Forge Data related functionality
-    - use the Data Management API to get to needed model version and inspect PIM data
+	-  based on the **version id** you can get the thumbnail of a given model.
 
 ---
 
