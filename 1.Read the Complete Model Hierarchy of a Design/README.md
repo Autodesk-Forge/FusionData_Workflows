@@ -19,6 +19,7 @@ In a **terminal**, you can run the test with:
 ```
 npm start
 ```
+As instructed in the console, you'll need to open a web browser and navigate to http://localhost:3000 in order to log into your Autodesk account 
 
 ## Output
 ```
