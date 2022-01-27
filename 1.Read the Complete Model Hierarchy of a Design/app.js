@@ -118,6 +118,7 @@ export default class App {
     let index = 0;
     for (let componentId in components) {
       // Get info about components we only have the id's of
+      // but no information yet about the component
       if (components[componentId] === null) {
         query += `
         _${index++}: component(id: "${componentId}") {
