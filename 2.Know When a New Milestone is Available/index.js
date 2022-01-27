@@ -7,7 +7,7 @@ const clientId = '<YOUR_CLIENT_ID>';
 const clientSecret = '<YOUR_CLIENT_SECRET>';
 
 // In a terminal, start ngrok with the following command: 
-// ngrok http 5500 -host-header="localhost:5500" 
+// ngrok http 3000 -host-header="localhost:3000" 
 // Copy and paste ngrok URL value returned to your terminal console. 
 const ngrokUrl = '<YOUR_NGROK_URL>';
 

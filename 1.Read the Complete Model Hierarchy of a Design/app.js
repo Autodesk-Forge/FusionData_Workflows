@@ -31,10 +31,28 @@ export default class App {
     })
   }
 
-  getModelHierarchy = async (hubId, projectId, dmVersionId) => {
-    const componentId = "comp~co.Fsq5T3_pTkyUyib4G_4Lzw~8tE2mKyIF1AryaLv0sR3YW_aga~W5xuOCUwuefUftyMUgMHhd~PTFGQFLfB5gFlUnkh5YJz0"
-
+  getModelHierarchy = async (hubName, projectName, versionId) => {
     try {
+      let hubId = await this.getHubId(hubName);
+      let projectId = await this.getProjectId(hubId, projectName);
+
+      let response = await this.sendQuery(
+        `query {
+          fileVersion(hubId: "${hubId}", projectId: "${projectId}", versionId: "${versionId}") {
+            rootComponent {
+              id
+              partNam
+              modelReferences {
+                component {
+                  id
+                  partName
+                }
+              }
+            }
+          }
+        }`
+      )
+      /*
       let response = await this.sendQuery(
         `query {
           component(id: "${componentId}") {
@@ -49,6 +67,7 @@ export default class App {
           }
         }`
       )
+      */
 
       let rootComponent = response.data.data.component;
       let components = {};
@@ -63,6 +82,30 @@ export default class App {
     } catch (err) {
       console.log("There was an issue: " + err.message)
     }
+  }
+
+  getHubId = async (hubName) => {
+    let response = await this.sendQuery(
+      `query {
+        hub(hubName: "${hubName}") {
+          id
+        }
+      }`
+    )
+
+    return response.data.data.hub.id;
+  }
+
+  getProjectId = async (hubId, projectName) => {
+    let response = await this.sendQuery(
+      `query {
+        project(hubId: "${hubId}", name: "${projectName}") {
+          id
+        }
+      }`
+    )
+
+    return response.data.data.project.id;
   }
 
   getSubComponents = async (components, modelReferences) => {
