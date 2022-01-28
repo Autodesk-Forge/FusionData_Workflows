@@ -25,6 +25,9 @@ As instructed in the console, you'll need to open a web browser and navigate to 
 Open http://localhost:3000 in a web browser in order to log in with your Autodesk account!
 Open thumbnail from location: file:///Users/nagyad/Documents/GitHub/Autodesk-Forge/PIM_Workflows_GraphQL/3.Find%20the%20Thumbnail%20of%20a%20specific%20Part/thumbnail.png
 ```
+Once the thumbnail has been downloaded, a link will be provided to it in the console that you can click - e.g.:\
+![Thumbnail](./thumbnail.png)
+
 ## Workflow explanation
 
 The workflow can be achieved following these steps:
