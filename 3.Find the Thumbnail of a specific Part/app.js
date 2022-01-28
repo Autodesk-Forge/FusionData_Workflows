@@ -1,5 +1,8 @@
 // Axios is a promise-based HTTP client for the browser and node.js. 
 import axios from "axios";
+// We need the following in order to save files to the machine
+import fs from "fs";  
+import path from "path"; 
 
 // Application constructor 
 export default class App {
@@ -31,7 +34,7 @@ export default class App {
     })
   }
 
-  getThumbnail = async (hubName, projectName, fileName) => {
+  downloadThumbnail = async (hubName, projectName, fileName) => {
     try {
       while (true) {
         let response = await this.sendQuery(
@@ -64,15 +67,18 @@ export default class App {
           }`
         )
 
-        let thumbnailStatus = response.data.data
+        let thumbnail = response.data.data
           .hubs.results[0]
           .projects.results[0]
           .rootFolder.childItems.results[0]
-          .rootComponent;
+          .rootComponent
+          .thumbnail;
 
-        if (thumbnailStatus === "asdasd") {
+        if (thumbnail.status === "success") {
           // If the thumbnail generation finished then we can return its URL
-          return "";
+          let thumbnailPath = path.resolve('thumbnail.png');
+          await this.downloadImage(thumbnail.variants[0].url, thumbnailPath);
+          return "file://" + encodeURI(thumbnailPath);
         } else {
           // Let's wait a second before checking the status of the thumbnail again
           await new Promise(resolve => setTimeout(resolve, 1000));
@@ -81,5 +87,23 @@ export default class App {
     } catch (err) {
       console.log("There was an issue: " + err.message)
     }
+  }
+
+  downloadImage = async (url, path) => {  
+    const writer = fs.createWriteStream(path);
+  
+    const response = await axios({
+      url,
+      method: 'GET',
+      headers: this.getRequestHeaders(),
+      responseType: 'stream'
+    });
+  
+    response.data.pipe(writer);
+  
+    return new Promise((resolve, reject) => {
+      writer.on('finish', resolve);
+      writer.on('error', reject);
+    });
   }
 }

@@ -4,11 +4,6 @@ import MyAuth from './auth.js';
 // Replace the string literal values with your own client ID, client secret, 
 // collection ID, and partNumber. 
 
-const clientId = '<YOUR_CLIENT_ID>';
-const clientSecret = '<YOUR_CLIENT_SECRET>';
-const hubName = '<YOUR_HUB_NAME>';
-const projectName = '<YOUR_PROJECT_NAME>';
-const fileName = '<YOUR_FILE_NAME>';
 
 // Create an instance of auth.js.
 let myForgeAuth = new MyAuth(clientId, clientSecret);
@@ -20,13 +15,13 @@ let myForgeApp = new MyApp(
   accessToken
 );
 
-const url = await myForgeApp.getThumbnail(
+const thumbnailPath = await myForgeApp.downloadThumbnail(
   hubName,
   projectName,
   fileName
 );
 
-console.log("Open image URL in browser: " + url);
+console.log("Open thumbnail saved here: " + thumbnailPath);
 
 
 
