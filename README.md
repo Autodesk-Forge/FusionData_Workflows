@@ -5,7 +5,7 @@
 
 
 **Forge API:** [![oAuth2](https://img.shields.io/badge/oAuth2-v2-green.svg)](http://developer-autodesk.github.io/)
-[![Forge GraphQL API](https://img.shields.io/badge/Forge%20Graph-v1-orange)](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/)
+[![Forge GraphQL API](https://img.shields.io/badge/Forge%20GraphQL-v1-orange)](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/)
 [![Forge Data Events](https://img.shields.io/badge/Forge%20Data%20Events-v1-informational)](https://forge.autodesk.com/en/docs/fevnt/v1/developers_guide/overview/)
 
 ---
