@@ -88,16 +88,15 @@ export default class App {
 
   getSubComponents = async (components, modelReferences) => {
     for (let occurrence of modelReferences) {
-      if (components[occurrence.component.id] === undefined)
-        components[occurrence.component.id] = null;
+      components[occurrence.component.id] ||= {};
     }
 
     let query = "query {";
     let index = 0;
     for (let componentId in components) {
       // Get info about components we only have the id's of
-      // but no information yet about the component
-      if (components[componentId] === null) {
+      // but no information yet about the component (e.g. its name)
+      if (!components[componentId]?.name) {
         query += `
         _${index++}: component(componentId: "${componentId}") {
           id
@@ -117,13 +116,11 @@ export default class App {
     query += "}"
 
     let response = await this.sendQuery(query);
-    for (let componentId in response.data.data) {
-      let component = response.data.data[componentId];
+    for (let component of Object.values(response.data.data)) {
       components[component.id] = component;
     }
 
-    for (let componentId in response.data.data) {
-      let component = response.data.data[componentId];
+    for (let component of Object.values(response.data.data)) {
       if (component.modelOccurrences.results.length > 0) {
         await this.getSubComponents(components, component.modelOccurrences.results);
       }
