@@ -4,11 +4,11 @@ import MyAuth from './auth.js';
 // Replace the string literal values with your own client ID, client secret, 
 // hub ID, project ID and item version ID. 
 
-const hubId = '<YOUR_HUB_ID>';
-const projectId = '<YOUR_PROJECT_ID>';
-const clientId = '8kAAlxHgPEIYLQuYSc0EuEAL0gqYQVkv';
-const clientSecret = 'EuYAvTd9UsXDaNYu';
-const fileName = 'shapes';
+const clientId = '<YOUR_CLIENT_ID>';
+const clientSecret = '<YOUR_CLIENT_SECRET>';
+const hubName = '<YOUR_HUB_NAME>';
+const projectName = '<YOUR_PROJECT_NAME>';
+const fileName = '<YOUR_FILE_NAME>';
 
 // Create an instance of auth.js.
 let myForgeAuth = new MyAuth(clientId, clientSecret);
