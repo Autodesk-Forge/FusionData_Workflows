@@ -4,13 +4,11 @@ import axios from "axios";
 // Application constructor 
 export default class App {
   constructor(accessToken) {
-    //this.host = "https://developer-stg.api.autodesk.com/";
+    this.host = "https://developer-stg.api.autodesk.com/";
     //this.graphAPI = `${this.host}forge/v2`;
-    
-    this.host = "https://developer-stg.api.autodesk.com/";//"https://developer-stg.api.autodesk.com/";
-    this.graphAPI = `${this.host}manufacturing/graphql/v1`//`${this.host}forge/v2`;
+    this.graphAPI = `${this.host}manufacturing/graphql/v1`;
 
-    this.accessToken = accessToken
+    this.accessToken = accessToken;
   }
 
   getRequestHeaders() {
