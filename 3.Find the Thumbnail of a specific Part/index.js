@@ -8,8 +8,7 @@ const clientId = '<YOUR_CLIENT_ID>';
 const clientSecret = '<YOUR_CLIENT_SECRET>';
 const hubName = '<YOUR_HUB_NAME>';
 const projectName = '<YOUR_PROJECT_NAME>';
-const versionId = '<YOUR_VERSION_ID>';
-const partNumber = '<YOUR_PART_NUMBER>';
+const fileName = '<YOUR_FILE_NAME>';
 
 // Create an instance of auth.js.
 let myForgeAuth = new MyAuth(clientId, clientSecret);
@@ -24,8 +23,7 @@ let myForgeApp = new MyApp(
 const url = await myForgeApp.getThumbnail(
   hubName,
   projectName,
-  versionId,
-  partNumber
+  fileName
 );
 
 console.log("Open image URL in browser: " + url);

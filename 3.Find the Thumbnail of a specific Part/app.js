@@ -31,77 +31,55 @@ export default class App {
     })
   }
 
-  getModelHierarchy = async (hubId, projectId, dmVersionId) => {
-    const componentId = "comp~co.Fsq5T3_pTkyUyib4G_4Lzw~8tE2mKyIF1AryaLv0sR3YW_aga~W5xuOCUwuefUftyMUgMHhd~PTFGQFLfB5gFlUnkh5YJz0"
-
+  getThumbnail = async (hubName, projectName, fileName) => {
     try {
-      let response = await this.sendQuery(
-        `query {
-          component(id: "${componentId}") {
-            id
-            partName
-            modelReferences {
-              component {
-                id
-                partName
+      while (true) {
+        let response = await this.sendQuery(
+          `query {
+            hubs(filter:{name:"${hubName}"}) {
+              results {
+                projects(filter:{name:"${projectName}"}) {
+                  results {
+                    rootFolder {
+                      childItems(filter:{name:"${fileName}"}) {
+                        results {
+                          ... on DesignFile {
+                            rootComponent {
+                              thumbnail {
+                                status
+                                variants {
+                                  size
+                                  url
+                                }
+                              }          
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
-          }
-        }`
-      )
+          }`
+        )
 
-      let rootComponent = response.data.data.component;
-      let components = {};
-      components[rootComponent.id] = rootComponent;
+        let thumbnailStatus = response.data.data
+          .hubs.results[0]
+          .projects.results[0]
+          .rootFolder.childItems.results[0]
+          .rootComponent;
 
-      await this.getSubComponents(components, rootComponent.modelReferences);
-
-      return {
-        rootId: rootComponent.id,
-        components
-      };
+        if (thumbnailStatus === "asdasd") {
+          // If the thumbnail generation finished then we can return its URL
+          return "";
+        } else {
+          // Let's wait a second before checking the status of the thumbnail again
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      }
     } catch (err) {
       console.log("There was an issue: " + err.message)
-    }
-  }
-
-  getSubComponents = async (components, modelReferences) => {
-    modelReferences.forEach(occurrence => {
-      components[occurrence.component.id] = null;
-    })
-
-    let query = "query {";
-    let index = 0;
-    for (let componentId in components) {
-      // Get info about components we only have the id's of
-      if (components[componentId] === null) {
-        query += `
-        _${index++}: component(id: "${componentId}") {
-          id
-          partName
-          modelReferences {
-            component {
-              id
-              partName
-            }
-          }
-        }
-      `
-      }
-    }
-    query += "}"
-
-    let response = await this.sendQuery(query);
-    for (let componentId in response.data.data) {
-      let component = response.data.data[componentId];
-      components[component.id] = component;
-    }
-
-    for (let componentId in response.data.data) {
-      let component = response.data.data[componentId];
-      if (component.modelReferences.length > 0) {
-        await this.getSubComponents(components, component.modelReferences);
-      }
     }
   }
 }
