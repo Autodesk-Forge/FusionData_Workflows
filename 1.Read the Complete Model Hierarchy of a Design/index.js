@@ -4,7 +4,11 @@ import MyAuth from './auth.js';
 // Replace the string literal values with your own client ID, client secret, 
 // hub ID, project ID and item version ID. 
 
-const versionId = '<YOUR_VERSION_ID>';
+const clientId = '<YOUR_CLIENT_ID>';
+const clientSecret = '<YOUR_CLIENT_SECRET>';
+const hubId = '<YOUR_HUB_ID>';
+const projectId = '<YOUR_PROJECT_ID>';
+const fileName = '<YOUR_FILE_NAME>';
 
 // Create an instance of auth.js.
 let myForgeAuth = new MyAuth(clientId, clientSecret);
@@ -19,15 +23,15 @@ let myForgeApp = new MyApp(
 let info = await myForgeApp.getModelHierarchy(
   hubName,
   projectName,
-  versionId
+  fileName
 );
 
 console.log("Model hierarchy:");
 printInfo(info.components, info.rootId, "");
 
 function printInfo (components, componentId, indent) {
-  console.log(indent + components[componentId].partName);
-  components[componentId].modelReferences.forEach(occurrence => {
+  console.log(indent + components[componentId].name);
+  components[componentId].modelOccurrences.results.forEach(occurrence => {
     printInfo(components, occurrence.component.id, indent + "  ");
   })
 }
