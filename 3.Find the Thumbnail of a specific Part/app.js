@@ -21,7 +21,7 @@ export default class App {
     };
   }
 
-  sendQuery = async (query) => {
+  async sendQuery(query) {
     return await axios({
       method: 'POST',
       url: `${this.graphAPI}`,
@@ -32,7 +32,7 @@ export default class App {
     })
   }
 
-  downloadThumbnail = async (hubName, projectName, fileName) => {
+  async downloadThumbnail(hubName, projectName, fileName) {
     try {
       while (true) {
         let response = await this.sendQuery(
@@ -88,7 +88,7 @@ export default class App {
     }
   }
 
-  downloadImage = async (url, path) => {  
+  async downloadImage(url, path) {  
     const writer = fs.createWriteStream(path);
   
     const response = await axios({

@@ -18,7 +18,7 @@ export default class App {
     };
   }
 
-  sendQuery = async (query) => {
+  async sendQuery(query) {
     return await axios({
       method: 'POST',
       url: `${this.graphAPI}`,
@@ -29,7 +29,7 @@ export default class App {
     })
   }
 
-  getModelHierarchy = async (hubName, projectName, fileName) => {
+  async getModelHierarchy(hubName, projectName, fileName) {
     try {
       let response = await this.sendQuery(
         `query {
@@ -86,7 +86,7 @@ export default class App {
     }
   }
 
-  getSubComponents = async (components, modelReferences) => {
+  async getSubComponents(components, modelReferences) {
     for (let occurrence of modelReferences) {
       components[occurrence.component.id] ||= {};
     }
