@@ -31,49 +31,53 @@ export default class App {
     })
   }
 
-  getModelHierarchy = async (hubName, projectName, versionId) => {
+  getModelHierarchy = async (hubName, projectName, fileName) => {
     try {
-      let hubId = await this.getHubId(hubName);
-      let projectId = await this.getProjectId(hubId, projectName);
-
       let response = await this.sendQuery(
         `query {
-          fileVersion(hubId: "${hubId}", projectId: "${projectId}", versionId: "${versionId}") {
-            rootComponent {
-              id
-              partNam
-              modelReferences {
-                component {
-                  id
-                  partName
+          hubs(filter:{name:"${hubName}"}) {
+            results {
+              name
+              projects(filter:{name:"${projectName}"}) {
+                results {
+                  name
+                  rootFolder {
+                    childItems(filter:{name:"${fileName}"}) {
+                      results {
+                        ... on DesignFile {
+                          name
+                          rootComponent {
+                            id
+                            name 
+                            modelOccurrences {
+                              results {
+                                component {
+                                  id
+                                  name
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
           }
         }`
       )
-      /*
-      let response = await this.sendQuery(
-        `query {
-          component(id: "${componentId}") {
-            id
-            partName
-            modelReferences {
-              component {
-                id
-                partName
-              }
-            }
-          }
-        }`
-      )
-      */
 
-      let rootComponent = response.data.data.component;
+      let rootComponent = response.data.data
+        .hubs.results[0]
+        .projects.results[0]
+        .rootFolder.childItems.results[0]
+        .rootComponent;
       let components = {};
       components[rootComponent.id] = rootComponent;
 
-      await this.getSubComponents(components, rootComponent.modelReferences);
+      await this.getSubComponents(components, rootComponent.modelOccurrences.results);
 
       return {
         rootId: rootComponent.id,
@@ -82,30 +86,6 @@ export default class App {
     } catch (err) {
       console.log("There was an issue: " + err.message)
     }
-  }
-
-  getHubId = async (hubName) => {
-    let response = await this.sendQuery(
-      `query {
-        hub(hubName: "${hubName}") {
-          id
-        }
-      }`
-    )
-
-    return response.data.data.hub.id;
-  }
-
-  getProjectId = async (hubId, projectName) => {
-    let response = await this.sendQuery(
-      `query {
-        project(hubId: "${hubId}", name: "${projectName}") {
-          id
-        }
-      }`
-    )
-
-    return response.data.data.project.id;
   }
 
   getSubComponents = async (components, modelReferences) => {
@@ -121,13 +101,15 @@ export default class App {
       // but no information yet about the component
       if (components[componentId] === null) {
         query += `
-        _${index++}: component(id: "${componentId}") {
+        _${index++}: component(componentId: "${componentId}") {
           id
-          partName
-          modelReferences {
-            component {
-              id
-              partName
+          name
+          modelOccurrences {
+            results {
+              component {
+                id
+                name
+              }
             }
           }
         }
@@ -144,8 +126,8 @@ export default class App {
 
     for (let componentId in response.data.data) {
       let component = response.data.data[componentId];
-      if (component.modelReferences.length > 0) {
-        await this.getSubComponents(components, component.modelReferences);
+      if (component.modelOccurrences.results.length > 0) {
+        await this.getSubComponents(components, component.modelOccurrences.results);
       }
     }
   }
