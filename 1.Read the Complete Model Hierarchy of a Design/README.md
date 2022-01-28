@@ -37,8 +37,7 @@ shapes
 
 The workflow can be achieved following these steps:
 
-1. Get the id of the hub and project based on their names
-2. Get the root component and its references
+1. Get the root component and its references based on the hub, project and file name
 3. Keep gathering the references for the child components
 
 -----------

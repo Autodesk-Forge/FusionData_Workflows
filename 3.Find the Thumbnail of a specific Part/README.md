@@ -32,7 +32,7 @@ Once the thumbnail has been downloaded, a link will be provided to it in the con
 
 The workflow can be achieved following these steps:
 
-1. Ask for the thumbnail of a specific model
+1. Ask for the thumbnail of a specific model based on its hub, project and file name
 2. If it's not available yet (status is "pending") then keep checking the latest status
 3. Once the status is "success" you can download the thumbnail using the url provided
 
