@@ -75,7 +75,8 @@ export default class App {
           .thumbnail;
 
         if (thumbnail.status === "success") {
-          // If the thumbnail generation finished then we can return its URL
+          // If the thumbnail generation finished then we can download it
+          // from the url
           let thumbnailPath = path.resolve('thumbnail.png');
           await this.downloadImage(thumbnail.variants[0].url, thumbnailPath);
           return "file://" + encodeURI(thumbnailPath);
