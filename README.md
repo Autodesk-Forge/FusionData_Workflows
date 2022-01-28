@@ -14,7 +14,7 @@ This repository contains several samples illustrating use of Forge GraphQL API i
 
 1. [Read the Complete Model Hierarchy of a Design](./1.Read%20the%20Complete%20Model%20Hierarchy%20of%20a%20Design) 
 
-   -  based on the **version id** of a given model you can get the full model hierarchy - similar to what is shown inside **Fusion 360**.
+   -  based on the **path to a model** (hub name, project name and file name) you can get the full model hierarchy - similar to what is shown inside **Fusion 360**.
 
 
 2. [Know when a Milestone is Available](./2.Know%20When%20a%20New%20Milestone%20is%20Available)
@@ -24,7 +24,7 @@ This repository contains several samples illustrating use of Forge GraphQL API i
 
 3. [Find the Thumbnail of a specific Part](./3.Find%20the%20Thumbnail%20of%20a%20specific%20Part)
    
-	-  based on the **version id** you can get the thumbnail of a given model.
+	-  based on the **path to a model** (hub name, project name and file name) you can get the thumbnail of a given model.
 
 ---
 
