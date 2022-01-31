@@ -12,6 +12,8 @@ You will need to set the value of `clientId` and `clientSecret` variables in `in
 You will also need to set the value of `hubName`, `projectName` and `fileName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Forge GraphQL API** itself\
 ![Get version id](./readme/inputs.png)
 
+### NOTE
+This sample assumes that your design file is not nested within a folder.
 
 ## Running the test
 In a **terminal**, you can run the test with:
@@ -40,6 +42,47 @@ The workflow can be achieved following these steps:
 1. Get the root component and its references based on the hub, project and file name
 3. Keep gathering the references for the child components
 
+## PIM API Query
+
+In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design file to extract the assembly hierachy
+
+```
+query getModelHierarchy {
+  hubs(filter:{name:"${hubName}"}) {
+    results {
+      name
+      projects(filter:{name:"${projectName}"}) {
+        results {
+          name
+          rootFolder {
+            childItems(filter:{name:"${fileName}"}) {
+              results {
+                ... on DesignFile {
+                  name
+                  rootComponent {
+                    id
+                    name 
+                    modelOccurrences {
+                      results {
+                        component {
+                          id
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
 -----------
 
-Please refer to this page for more details: [Forge Graph v1](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/)
+Please refer to this page for more details: [PIM API GraphQL Docs](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/)
