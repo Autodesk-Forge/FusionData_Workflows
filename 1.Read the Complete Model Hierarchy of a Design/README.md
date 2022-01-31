@@ -47,15 +47,15 @@ The workflow can be achieved following these steps:
 In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design file to extract the assembly hierachy
 
 ```
-query getModelHierarchy {
-  hubs(filter:{name:"${hubName}"}) {
+query GetModelHierarchy($hubname: String!, $projectname: String!, $filename: String!) {
+  hubs(filter:{name: $hubname}) {
     results {
       name
-      projects(filter:{name:"${projectName}"}) {
+      projects(filter:{name:$projectname}) {
         results {
           name
           rootFolder {
-            childItems(filter:{name:"${fileName}"}) {
+            items(filter:{name:$filename}) {
               results {
                 ... on DesignFile {
                   name
