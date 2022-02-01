@@ -45,7 +45,7 @@ export default class App {
       let rootComponentId = await this.getRootComponentId(hubName, projectName, fileName);
 
       let response = await this.sendQuery(
-        `mutation CreateWebhook($componentId: String!, $eventType: WebhookEventTypeEnum!, $callbackURL: String!) {
+        `mutation CreateWebhook($componentId: ID!, $eventType: WebhookEventTypeEnum!, $callbackURL: String!) {
           createWebhook(webhook: {
             componentId: $componentId,
             eventType: $eventType,
@@ -63,7 +63,9 @@ export default class App {
         }
       )
 
-      let webhookId = response.data.data.id;
+      let webhookId = response.data.data.createWebhook.id;
+
+      console.log('Created hook ' + webhookId);
 
       return webhookId;
     } catch (err) {
@@ -76,21 +78,17 @@ export default class App {
       let webhooks = await this.getWebhooks(eventType);
 
       for (let webhook of webhooks) {
-        await this.sendQuery(
+        let response = await this.sendQuery(
           `mutation DeleteWebhook($webhookId: String!) {
-            deleteWebhook(webhook: {
-              webhookId: $webhookId
-            }
+            deleteWebhook(webhookId: $webhookId)
           }`,
           {
             webhookId: webhook.id
           }
         )
+
+        console.log('Deleted hook ' + response.data.data.deleteWebhook);
       } 
-
-      let webhookId = response.data.data.id;
-
-      return webhookId;
     } catch (err) {
       console.log("There was an issue: " + err.message)
     }
@@ -106,7 +104,7 @@ export default class App {
               results {
                 name
                 rootFolder {
-                  childItems(filter:{name:$fileName}) {
+                  items(filter:{name:$fileName}) {
                     results {
                       ... on DesignFile {
                         name
@@ -132,7 +130,7 @@ export default class App {
     let rootComponent = response.data.data
       .hubs.results[0]
       .projects.results[0]
-      .rootFolder.childItems.results[0]
+      .rootFolder.items.results[0]
       .rootComponent;
 
     return rootComponent.id;
