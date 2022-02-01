@@ -23,22 +23,15 @@ As instructed in the console, you'll need to open a web browser and navigate to 
 ## Output
 ```
 Open http://localhost:3000 in a web browser in order to log in with your Autodesk account!
-Model hierarchy:
-shapes
-  Round Things
-    Torus
-    Sphere
-    Cylinder
-  Box
-  New Box
-  cube
+...
 ```
 ## Workflow explanation
 
 The workflow can be achieved following these steps:
 
-1. Get the root component and its references based on the hub, project and file name
-3. Keep gathering the references for the child components
+1. Get the id of root component 
+2. Subscribe to the MILESTONE_CREATED event on that sepcific component
+3. Listen to the events
 
 -----------
 
