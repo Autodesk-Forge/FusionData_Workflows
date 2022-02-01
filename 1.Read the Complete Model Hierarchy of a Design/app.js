@@ -18,13 +18,14 @@ export default class App {
     };
   }
 
-  async sendQuery(query) {
+  async sendQuery(query, variables) {
     return await axios({
       method: 'POST',
       url: `${this.graphAPI}`,
       headers: this.getRequestHeaders(),
       data: { 
-        query
+        query,
+        variables
       }
     })
   }
@@ -32,15 +33,15 @@ export default class App {
   async getModelHierarchy(hubName, projectName, fileName) {
     try {
       let response = await this.sendQuery(
-        `query {
-          hubs(filter:{name:"${hubName}"}) {
+        `query GetModelHierarchy($hubName: String!, $projectName: String!, $fileName: String!) {
+          hubs(filter:{name:$hubName}) {
             results {
               name
-              projects(filter:{name:"${projectName}"}) {
+              projects(filter:{name:$projectName}) {
                 results {
                   name
                   rootFolder {
-                    childItems(filter:{name:"${fileName}"}) {
+                    childItems(filter:{name:$fileName}) {
                       results {
                         ... on DesignFile {
                           name
@@ -64,7 +65,12 @@ export default class App {
               }
             }
           }
-        }`
+        }`,
+        {
+          hubName,
+          projectName,
+          fileName
+        }
       )
 
       let rootComponent = response.data.data
