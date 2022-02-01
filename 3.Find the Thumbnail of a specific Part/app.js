@@ -21,13 +21,14 @@ export default class App {
     };
   }
 
-  async sendQuery(query) {
+  async sendQuery(query, variables) {
     return await axios({
       method: 'POST',
       url: `${this.graphAPI}`,
       headers: this.getRequestHeaders(),
       data: { 
-        query
+        query,
+        variables
       }
     })
   }
@@ -36,13 +37,13 @@ export default class App {
     try {
       while (true) {
         let response = await this.sendQuery(
-          `query {
-            hubs(filter:{name:"${hubName}"}) {
+          `query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!) {
+            hubs(filter:{name:$hubName}) {
               results {
-                projects(filter:{name:"${projectName}"}) {
+                projects(filter:{name:$projectName}) {
                   results {
                     rootFolder {
-                      childItems(filter:{name:"${fileName}"}) {
+                      childItems(filter:{name:$fileName}) {
                         results {
                           ... on DesignFile {
                             rootComponent {
@@ -62,7 +63,12 @@ export default class App {
                 }
               }
             }
-          }`
+          }`,
+          {
+            hubName,
+            projectName,
+            fileName
+          }
         )
 
         let thumbnail = response.data.data
