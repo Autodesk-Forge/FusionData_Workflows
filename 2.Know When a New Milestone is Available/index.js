@@ -1,10 +1,15 @@
 import MyApp from './app.js'; 
 import MyAuth from './auth.js';
 
-// Replace the string literal values with your own client ID, client secret, 
-// collection ID, and ngrok URL. 
+// Replace the string literal values with your own client id, client secret, 
+// hub name, project name and file name. 
+
 const clientId = '<YOUR_CLIENT_ID>';
 const clientSecret = '<YOUR_CLIENT_SECRET>';
+const hubName = '<YOUR_HUB_NAME>';
+const projectName = '<YOUR_PROJECT_NAME>';
+const fileName = '<YOUR_FILE_NAME>';
+const eventType = 'MILESTONE_CREATED';
 
 // In a terminal, start ngrok with the following command: 
 // ngrok http 3000 -host-header="localhost:3000" 
@@ -21,21 +26,9 @@ var myForgeApp = new MyApp(
   ngrokUrl
 );
 
-// Ensure a clean start by deleting any existing subscriptions.
-await myForgeApp.deleteSubscriptions();
+await myForgeApp.unsubscribeToEvent(eventType);
 
-const collectionIds = await myForgeApp.getCollectionIds();
-const entity = "snapshot";
-const eventType = "created";
-const filters = [
-    "$.data.attributes[?(@.name=='name' && @.value=='milestoneSnapshot')]"
-]
-
-for (const collection of collectionIds) {
-    console.log(`\nSubscribing to ${entity}.${eventType} event on collection corresponding to hub "${collection.hubName}"`);
-    await myForgeApp.subscribeToEvent(collection.id,entity, eventType, filters);
-}
-
+await myForgeApp.subscribeToEvent(hubName, projectName, fileName, eventType, ngrokUrl);
 
 // Use the startMonitoringEvents method to report events to the console.
 await myForgeApp.startMonitoringEvents();
