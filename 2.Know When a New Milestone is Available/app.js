@@ -12,7 +12,7 @@ app.use(express.json());
 
 // Application constructor 
 export default class App {
-  constructor(accessToken) {
+  constructor(accessToken, callbackUrl) {
     this.host = "https://developer-stg.api.autodesk.com/";
     //this.graphAPI = `${this.host}forge/v2`;
     this.graphAPI = `${this.host}manufacturing/graphql/v1`;
@@ -140,7 +140,7 @@ export default class App {
 
   async getWebhooks(eventType) {
     let response = await this.sendQuery(
-      `query GetWebhooks() {
+      `query {
         webhooks {
           results {
             id
