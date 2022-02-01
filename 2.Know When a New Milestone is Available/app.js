@@ -98,7 +98,7 @@ export default class App {
 
   async getRootComponentId(hubName, projectName, fileName) {
     let response = await this.sendQuery(
-      `query GetRootComponentId($hubName: String!, $projectName: String!, $fileName: String!) {
+      `query GetRootComponent($hubName: String!, $projectName: String!, $fileName: String!) {
         hubs(filter:{name:$hubName}) {
           results {
             name
