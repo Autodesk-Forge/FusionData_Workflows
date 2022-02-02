@@ -12,6 +12,10 @@ You will need to set the value of `clientId` and `clientSecret` variables in `in
 You will also need to set the value of `hubName`, `projectName` and `fileName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Forge GraphQL API** itself\
 ![Get version id](./readme/inputs.png)
 
+Then start **ngrok** that will provide a publicly available URL that the **Forge** webhook can send messages to, which then will be passed to your computer\
+![ngrok](./readme/ngrok.gif)
+
+As shown in the gif, you need to copy the relevant URL and set the value of `ngrokUrl` in `index.js` to that 
 
 ## Running the test
 In a **terminal**, you can run the test with:
@@ -29,6 +33,9 @@ Listening to the events on http://localhost:3000 => http://cf7e-86-2-185-49.ngro
 
 Create a milestone in Fusion 360 and wait for the event to be listed here:
 ```
+Here is how you can  create a milestone in **Fusion 360**\
+![Create milestone](./readme/SaveDialog.png)
+
 ## Workflow explanation
 
 The workflow can be achieved following these steps:
