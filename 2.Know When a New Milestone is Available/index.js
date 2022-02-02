@@ -33,7 +33,7 @@ await myForgeApp.subscribeToEvent(hubName, projectName, fileName, eventType, ngr
 // Use the startMonitoringEvents method to report events to the console.
 await myForgeApp.startMonitoringEvents();
 
-console.log("\nCreate in Fusion 360 a milestone and expect an event here:")
+console.log("\nCreate a milestone in Fusion 360 and wait for the event to be listed here:")
 
 
 

@@ -66,7 +66,7 @@ export default class App {
 
       let webhookId = response.data.data.createWebhook.id;
 
-      console.log('Created hook ' + webhookId);
+      console.log('Created webhook ' + webhookId);
 
       return webhookId;
     } catch (err) {
@@ -90,7 +90,7 @@ export default class App {
           }
         )
 
-        console.log('Deleted hook ' + response.data.data.deleteWebhook);
+        console.log('Deleted webhook ' + response.data.data.deleteWebhook);
       } 
     } catch (err) {
       console.log("There was an issue: " + err.message)
@@ -142,7 +142,7 @@ export default class App {
 
   async getWebhooks(eventType) {
     let response = await this.sendQuery(
-      `query {
+      `query GetWebhooks {
         webhooks {
           results {
             id
