@@ -40,6 +40,7 @@ export default class App {
     })
   }
 
+// <subscribeToEvent>
   async subscribeToEvent(hubName, projectName, fileName, eventType, callbackURL) {
     try {
       let rootComponentId = await this.getRootComponentId(hubName, projectName, fileName);
@@ -72,7 +73,9 @@ export default class App {
       console.log("There was an issue: " + err.message)
     }
   }
+// </subscribeToEvent>
 
+// <unsubscribeToEvent>
   async unsubscribeToEvent(eventType) {
     try {
       let webhooks = await this.getWebhooks(eventType);
@@ -93,6 +96,7 @@ export default class App {
       console.log("There was an issue: " + err.message)
     }
   }
+// </unsubscribeToEvent>
 
   async getRootComponentId(hubName, projectName, fileName) {
     let response = await this.sendQuery(
@@ -158,6 +162,7 @@ export default class App {
     return webhooks;
   }
 
+// <startMonitoringEvents>
   async startMonitoringEvents() {
     try {
       console.log(
@@ -175,4 +180,5 @@ export default class App {
       console.log(error);
     }
   };
+// </startMonitoringEvents>
 }

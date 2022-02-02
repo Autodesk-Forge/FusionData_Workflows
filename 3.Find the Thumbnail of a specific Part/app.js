@@ -33,6 +33,7 @@ export default class App {
     })
   }
 
+// <downloadThumbnail>
   async downloadThumbnail(hubName, projectName, fileName) {
     try {
       while (true) {
@@ -93,6 +94,7 @@ export default class App {
       console.log("There was an issue: " + err.message)
     }
   }
+// </downloadThumbnail>
 
   async downloadImage(url, path) {  
     const writer = fs.createWriteStream(path);

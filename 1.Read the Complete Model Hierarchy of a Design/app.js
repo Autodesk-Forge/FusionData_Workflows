@@ -30,6 +30,7 @@ export default class App {
     })
   }
 
+// <getModelHierarchy>
   async getModelHierarchy(hubName, projectName, fileName) {
     try {
       let response = await this.sendQuery(
@@ -91,6 +92,7 @@ export default class App {
       console.log("There was an issue: " + err.message)
     }
   }
+// </getModelHierarchy>  
 
   async getSubComponents(components, modelReferences) {
     for (let occurrence of modelReferences) {
