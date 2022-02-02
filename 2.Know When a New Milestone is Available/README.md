@@ -23,17 +23,40 @@ As instructed in the console, you'll need to open a web browser and navigate to 
 ## Output
 ```
 Open http://localhost:3000 in a web browser in order to log in with your Autodesk account!
-...
+Deleted webhook ccec121a-d496-4ff9-adf5-84446695e041
+Created webhook e862d1b7-44d6-4268-a96c-8072978fb472
+Listening to the events on http://localhost:3000 => http://cf7e-86-2-185-49.ngrok.io/callback
+
+Create a milestone in Fusion 360 and wait for the event to be listed here:
 ```
 ## Workflow explanation
 
 The workflow can be achieved following these steps:
 
 1. Get the id of root component 
-2. Subscribe to the MILESTONE_CREATED event on that sepcific component
-3. Listen to the events
+2. Subscribe to the MILESTONE_CREATED event on the specific component
+3. Listen to the event
+
+## PIM API Query
+
+In `app.js` file, the following GraphQL query creates the webhook that will notify you when a new milstone gets created
+
+```
+mutation CreateWebhook($componentId: ID!, $eventType: WebhookEventTypeEnum!, $callbackURL: String!) {
+  createWebhook(webhook: {
+    componentId: $componentId,
+    eventType: $eventType,
+    callbackURL: $callbackURL,
+    expiresOn: "2022-10-12T07:20:50.52Z",
+    secretToken: "12345678901234567890123456789012"
+  }) {
+    id
+  }
+}
+```
+
 
 -----------
 
-Please refer to this page for more details: [Forge Graph v1](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/)
+Please refer to this page for more details: [PIM API GraphQL Docs](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/)
 
