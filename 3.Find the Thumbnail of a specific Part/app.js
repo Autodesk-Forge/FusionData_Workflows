@@ -43,7 +43,7 @@ export default class App {
                 projects(filter:{name:$projectName}) {
                   results {
                     rootFolder {
-                      childItems(filter:{name:$fileName}) {
+                      items(filter:{name:$fileName}) {
                         results {
                           ... on DesignFile {
                             rootComponent {
@@ -74,7 +74,7 @@ export default class App {
         let thumbnail = response.data.data
           .hubs.results[0]
           .projects.results[0]
-          .rootFolder.childItems.results[0]
+          .rootFolder.items.results[0]
           .rootComponent
           .thumbnail;
 

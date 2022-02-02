@@ -46,7 +46,7 @@ query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!)
       projects(filter:{name:$projectName}) {
         results {
           rootFolder {
-            childItems(filter:{name:$fileName}) {
+            items(filter:{name:$fileName}) {
               results {
                 ... on DesignFile {
                   rootComponent {
