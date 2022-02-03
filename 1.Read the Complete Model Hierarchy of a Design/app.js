@@ -4,10 +4,7 @@ import axios from "axios";
 // Application constructor 
 export default class App {
   constructor(accessToken) {
-    this.host = "https://developer-stg.api.autodesk.com/";
-    //this.graphAPI = `${this.host}forge/v2`;
-    this.graphAPI = `${this.host}manufacturing/graphql/v1`;
-
+    this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
     this.accessToken = accessToken;
   }
 
@@ -100,13 +97,13 @@ export default class App {
     }
 
     let query = "query {";
-    let index = 0;
+    let counter = 0;
     for (let componentId in components) {
       // Get info about components we only have the id's of
       // but no information yet about the component (e.g. its name)
       if (!components[componentId]?.name) {
         query += `
-        _${index++}: component(componentId: "${componentId}") {
+        _${counter++}: component(componentId: "${componentId}") {
           id
           name
           modelOccurrences {
@@ -122,6 +119,10 @@ export default class App {
       }
     }
     query += "}"
+
+    if (counter === 0) {
+      return;
+    }
 
     let response = await this.sendQuery(query);
     for (let component of Object.values(response.data.data)) {
