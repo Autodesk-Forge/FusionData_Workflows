@@ -72,4 +72,4 @@ query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!)
 
 -----------
 
-Please refer to this page for more details: [PIM API GraphQL Docs](https://forge.autodesk.com/en/docs/forgeag/v1/developers_guide/overview/)
+Please refer to this page for more details: [PIM API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
