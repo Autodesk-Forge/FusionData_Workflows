@@ -84,6 +84,7 @@ export default class App {
           await this.downloadImage(thumbnail.variants[0].url, thumbnailPath);
           return "file://" + encodeURI(thumbnailPath);
         } else {
+          console.log("Extracting thumbnail … (it may take a few seconds)")
           // Let's wait a second before checking the status of the thumbnail again
           await new Promise(resolve => setTimeout(resolve, 1000));
         }
