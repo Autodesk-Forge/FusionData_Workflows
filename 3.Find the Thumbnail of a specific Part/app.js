@@ -1,5 +1,6 @@
 // Axios is a promise-based HTTP client for the browser and node.js. 
 import axios from "axios";
+
 // We need the following in order to save files to the machine
 import fs from "fs";  
 import path from "path"; 
@@ -7,10 +8,7 @@ import path from "path";
 // Application constructor 
 export default class App {
   constructor(accessToken) {
-    this.host = "https://developer-stg.api.autodesk.com/";
-    //this.graphAPI = `${this.host}forge/v2`;
-    this.graphAPI = `${this.host}manufacturing/graphql/v1`;
-
+    this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
     this.accessToken = accessToken;
   }
 
