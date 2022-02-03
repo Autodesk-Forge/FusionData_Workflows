@@ -30,7 +30,7 @@ This repository contains several samples illustrating use of Forge GraphQL API i
 
 ## Prerequisites
 1. **Forge Account**: Learn how to create a Forge Account, activate subscription and create an app at [this tutorial](http://learnforge.autodesk.io/#/account/);
-2. [Node.Js](https://nodejs.org) with version > v14.16.0 and basic knowledge of JavaScript;
+2. [Node.Js](https://nodejs.org) with version > v16.13.2 and basic knowledge of JavaScript;
 
 
 # License
