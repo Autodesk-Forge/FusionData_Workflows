@@ -13,9 +13,7 @@ app.use(express.json());
 // Application constructor 
 export default class App {
   constructor(accessToken, callbackUrl) {
-    this.host = "https://developer-stg.api.autodesk.com/";
-    //this.graphAPI = `${this.host}forge/v2`;
-    this.graphAPI = `${this.host}manufacturing/graphql/v1`;
+    this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
     this.accessToken = accessToken;
     this.port = 3000;
     this.callbackUrl = callbackUrl;

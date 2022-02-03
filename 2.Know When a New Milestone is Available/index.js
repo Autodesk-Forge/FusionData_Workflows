@@ -18,6 +18,7 @@ const ngrokUrl = '<YOUR_NGROK_URL>';
 
 // Create an instance of auth.js.
 let myForgeAuth = new MyAuth(clientId, clientSecret);
+
 // Get an access token from your auth.js instance. 
 let accessToken = await myForgeAuth.getAccessToken();
 
