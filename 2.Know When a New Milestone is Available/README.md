@@ -27,11 +27,13 @@ As instructed in the console, you'll need to open a web browser and navigate to 
 ## Output
 ```
 Open http://localhost:3000 in a web browser in order to log in with your Autodesk account!
-Deleted webhook ccec121a-d496-4ff9-adf5-84446695e041
-Created webhook e862d1b7-44d6-4268-a96c-8072978fb472
-Listening to the events on http://localhost:3000 => http://cf7e-86-2-185-49.ngrok.io/callback
+Deleted webhook 75a2adac-622e-41a0-b560-8fdb4a5228bd
+Created webhook c3bebb52-4224-45ff-ad5b-fd7353f824a6
+Listening to the events on http://localhost:3000 => https://fc4d-86-2-185-49.ngrok.io/callback
 
 Create a milestone in Fusion 360 and wait for the event to be listed here:
+Received a notification with following content:
+ {"id":"eaa235b6-067f-4bf6-963d-18610264122d","source":"urn:com.autodesk.forge:clientid:BDFN4GFd5RKCFGX9BRZ1hldVdDBAiMAE","specversion":"1.0","type":"autodesk.data.pim:milestone.created-1.0.0","subject":"urn:autodesk.data.pim:component:comp~co.1069EFHgQkyeThLU-h43DA~HIxLpzPJujopTosn3eTm7i_aga~9WFD51oaMcQvPeWaZGWHEr","time":"2022-02-04T09:16:50.985Z","data":{"componentid":"comp~co.1069EFHgQkyeThLU-h43DA~HIxLpzPJujopTosn3eTm7i_aga~9WFD51oaMcQvPeWaZGWHEr","milestonename":"Milestone V23","eventtype":"MILESTONE_CREATED"},"dataschema":"https://forge.autodesk.com/schemas/pim-event-schema-v1.0.0.json"}
 ```
 Here is how you can  create a milestone in **Fusion 360**\
 ![Create milestone](./readme/SaveDialog.png)
