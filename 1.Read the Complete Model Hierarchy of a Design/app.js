@@ -16,7 +16,7 @@ export default class App {
   }
 
   async sendQuery(query, variables) {
-    return await axios({
+    let response = await axios({
       method: 'POST',
       url: `${this.graphAPI}`,
       headers: this.getRequestHeaders(),
@@ -25,6 +25,13 @@ export default class App {
         variables
       }
     })
+
+    if (response.data.errors) {
+      let formatted = JSON.stringify(response.data.errors, null, 2);
+      console.log(`GraphQL API error:\n${formatted}`);
+    }
+
+    return response;
   }
 
 // <getModelHierarchy>
