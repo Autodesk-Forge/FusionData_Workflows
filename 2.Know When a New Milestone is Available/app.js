@@ -167,7 +167,7 @@ export default class App {
       console.log(
         `Listening to the events on http://localhost:${this.port} => ${this.callbackUrl}`
       );
-      app.post("/callback", async (req, res) => {
+      app.post(this.callbackPath, async (req, res) => {
         console.log(
           `Received a notification with following content:\n ${JSON.stringify(
             req.body
