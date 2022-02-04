@@ -168,11 +168,10 @@ export default class App {
         `Listening to the events on http://localhost:${this.port} => ${this.callbackUrl}`
       );
       app.post(this.callbackPath, async (req, res) => {
-        console.log(
-          `Received a notification with following content:\n ${JSON.stringify(
-            req.body
-          )}`
-        );
+        // Format the json string content to make it easier to read
+        let formatted = JSON.stringify(req.body, null, 2);
+
+        console.log(`Received a notification with following content:\n${formatted}`);
       });
       app.listen(this.port);
     } catch (error) {
