@@ -12,11 +12,12 @@ app.use(express.json());
 
 // Application constructor 
 export default class App {
-  constructor(accessToken, callbackUrl) {
+  constructor(accessToken, ngrokUrl) {
     this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
     this.accessToken = accessToken;
     this.port = 3000;
-    this.callbackUrl = callbackUrl;
+    this.callbackPath = '/callback';
+    this.callbackUrl = ngrokUrl + this.callbackPath;
   }
 
   getRequestHeaders() {
@@ -39,7 +40,7 @@ export default class App {
   }
 
 // <subscribeToEvent>
-  async subscribeToEvent(hubName, projectName, fileName, eventType, callbackURL) {
+  async subscribeToEvent(hubName, projectName, fileName, eventType) {
     try {
       let rootComponentId = await this.getRootComponentId(hubName, projectName, fileName);
 
@@ -58,7 +59,7 @@ export default class App {
         {
           componentId: rootComponentId,
           eventType,
-          callbackURL
+          callbackURL: this.callbackUrl
         }
       )
 
@@ -164,7 +165,7 @@ export default class App {
   async startMonitoringEvents() {
     try {
       console.log(
-        `Listening to the events on http://localhost:${this.port} => ${this.callbackUrl}/callback`
+        `Listening to the events on http://localhost:${this.port} => ${this.callbackUrl}`
       );
       app.post("/callback", async (req, res) => {
         console.log(

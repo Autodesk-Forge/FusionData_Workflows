@@ -29,7 +29,7 @@ var myForgeApp = new MyApp(
 
 await myForgeApp.unsubscribeToEvent(eventType);
 
-await myForgeApp.subscribeToEvent(hubName, projectName, fileName, eventType, ngrokUrl);
+await myForgeApp.subscribeToEvent(hubName, projectName, fileName, eventType);
 
 // Use the startMonitoringEvents method to report events to the console.
 await myForgeApp.startMonitoringEvents();
