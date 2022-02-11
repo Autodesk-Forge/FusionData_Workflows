@@ -179,6 +179,8 @@ export default class App {
         let formatted = JSON.stringify(req.body, null, 2);
 
         console.log(`Received a notification with following content:\n${formatted}`);
+
+        res.status(200).end();
       });
       app.listen(this.port);
     } catch (error) {
