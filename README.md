@@ -75,6 +75,31 @@ and the reply could be:
 }
 ```
 
+You could also get to a specific **folder** or **file** using the `item(){}` query if you know the id of the specific **file** or **folder**, e.g.:
+```
+{
+  item(
+    hubId: "a.YnVzaW5lc3M6YXV0b2Rlc2s2MTA0",
+    projectId: "a.YnVzaW5lc3M6YXV0b2Rlc2s2MTA0IzIwMjIwMjA0NDkzNjczNjA2",
+    itemId: "urn:adsk.wipprod:fs.folder:co.SC8l0gh1RKa_MkpcNCYExw"
+  ) {
+    ... on Folder {
+      name
+    }
+  }
+}
+```
+and the reply could be:
+```
+{
+  "data": {
+    "item": {
+      "name": "Test folder"
+    }
+  }
+}
+```
+
 # License
 
 These samples are licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
