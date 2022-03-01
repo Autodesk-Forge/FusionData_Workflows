@@ -33,6 +33,48 @@ This repository contains several samples illustrating use of Forge GraphQL API i
 2. [Node.Js](https://nodejs.org) with version > v16.13.2 and basic knowledge of JavaScript;
 
 
+## Notes
+
+Though the samples start with the `hubs(){}` query, there are many other options for you. The easiest is to check the **QUERIES** section on the **DOCS** tab in the [PIM GraphQL Explorer](https://forge.autodesk.com/en/docs/pim-graphql/v1/playground/pim-graphql-explorer/) to see what other starting points are available.
+
+![Query](./readme/queries.png)
+
+As you can see, you could e.g. start directly with a given file version if you already know the parameters it requires: `hubId`, `projectId` and `versionId`. Perhaps you already have the necessary values from a previous **GraphQL** request or via the [Data Management API](https://forge.autodesk.com/en/docs/data/v2/developers_guide/overview/) 
+
+![Query](./readme/fileversions.png)
+
+In that case the query might look like this:
+
+```
+{
+  fileVersion(
+    hubId: "a.YnVzaW5lc3M6YXV0b2Rlc2s2MTA0",
+    projectId: "a.YnVzaW5lc3M6YXV0b2Rlc2s2MTA0IzIwMjIwMjA0NDkzNjczNjA2",
+    versionId: "urn:adsk.wipprod:fs.file:vf.0pdKmY_sTHW957H5fthyLw?version=5"
+  ) {
+    ... on DesignFileVersion {
+      id
+      rootComponent {
+        name
+      }
+    }
+  }
+}
+```
+and the reply could be:
+```
+{
+  "data": {
+    "fileVersion": {
+      "id": "urn:adsk.wipprod:fs.file:vf.0pdKmY_sTHW957H5fthyLw?version=5",
+      "rootComponent": {
+        "name": "Box"
+      }
+    }
+  }
+}
+```
+
 # License
 
 These samples are licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
