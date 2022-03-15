@@ -59,14 +59,18 @@ query GetModelHierarchy($hubName: String!, $projectName: String!, $fileName: Str
               results {
                 ... on DesignFile {
                   name
-                  rootComponent {
-                    id
-                    name 
-                    modelOccurrences {
-                      results {
-                        component {
-                          id
-                          name
+                  tipVersion {
+                    ... on DesignFileVersion {
+                      rootComponent {
+                        id
+                        name 
+                        modelOccurrences {
+                          results {
+                            component {
+                              id
+                              name
+                            }
+                          }
                         }
                       }
                     }
