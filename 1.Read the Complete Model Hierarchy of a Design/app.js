@@ -50,14 +50,18 @@ export default class App {
                       results {
                         ... on DesignFile {
                           name
-                          rootComponent {
-                            id
-                            name 
-                            modelOccurrences {
-                              results {
-                                component {
-                                  id
-                                  name
+                          tipVersion {
+                            ... on DesignFileVersion {
+                              rootComponent {
+                                id
+                                name 
+                                modelOccurrences {
+                                  results {
+                                    component {
+                                      id
+                                      name
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -82,7 +86,7 @@ export default class App {
         .hubs.results[0]
         .projects.results[0]
         .rootFolder.items.results[0]
-        .rootComponent;
+        .tipVersion.rootComponent;
       let components = {};
       components[rootComponent.id] = rootComponent;
 
@@ -110,7 +114,7 @@ export default class App {
       // but no information yet about the component (e.g. its name)
       if (!components[componentId]?.name) {
         query += `
-        _${counter++}: component(componentId: "${componentId}") {
+        _${counter++}: componentVersion(componentVersionId: "${componentId}") {
           id
           name
           modelOccurrences {
