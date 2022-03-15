@@ -52,14 +52,18 @@ export default class App {
                       items(filter:{name:$fileName}) {
                         results {
                           ... on DesignFile {
-                            rootComponent {
-                              thumbnail {
-                                status
-                                variants {
-                                  size
-                                  url
+                            tipVersion {
+                              ... on DesignFileVersion {
+                                rootComponent {
+                                  thumbnail {
+                                    status
+                                    variants {
+                                      size
+                                      url
+                                    }
+                                  }          
                                 }
-                              }          
+                              }
                             }
                           }
                         }
@@ -81,7 +85,7 @@ export default class App {
           .hubs.results[0]
           .projects.results[0]
           .rootFolder.items.results[0]
-          .rootComponent
+          .tipVersion.rootComponent
           .thumbnail;
 
         if (thumbnail.status === "success") {
