@@ -118,12 +118,8 @@ export default class App {
                     results {
                       ... on DesignFile {
                         name
-                        tipVersion {
-                          ... on DesignFileVersion {
-                            rootComponent {
-                              id
-                            }
-                          }
+                        rootComponent {
+                          id
                         }
                       }
                     }
@@ -145,7 +141,7 @@ export default class App {
       .hubs.results[0]
       .projects.results[0]
       .rootFolder.items.results[0]
-      .tipVersion.rootComponent;
+      .rootComponent;
 
     return rootComponent.id;
   }
