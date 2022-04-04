@@ -36,7 +36,7 @@ The workflow can be achieved following these steps:
 2. If it's not available yet (status is "pending") then keep checking the latest status
 3. Once the status is "success" you can download the thumbnail using the url provided
 
-## PIM API Query
+## Fusion Data API Query
 
 In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design file to generate the thumbnail for
 ```
@@ -76,4 +76,4 @@ query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!)
 
 -----------
 
-Please refer to this page for more details: [PIM API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
+Please refer to this page for more details: [Fusion Data API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)

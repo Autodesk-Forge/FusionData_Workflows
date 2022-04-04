@@ -59,7 +59,7 @@ The workflow can be achieved following these steps:
 2. Subscribe to the MILESTONE_CREATED event on the specific component
 3. Listen to the event
 
-## PIM API Query
+## Fusion Data API Query
 
 In `app.js` file, the following GraphQL query creates the webhook that will notify you when a new milstone gets created
 
@@ -80,5 +80,5 @@ mutation CreateWebhook($componentId: ID!, $eventType: WebhookEventTypeEnum!, $ca
 
 -----------
 
-Please refer to this page for more details: [PIM API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
+Please refer to this page for more details: [Fusion Data API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
 

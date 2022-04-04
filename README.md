@@ -1,4 +1,4 @@
-# PIM Workflows using GraphQL
+# Fusion Data Workflows using GraphQL
 
 ![Platforms](https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20linux-lightgray.svg)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
@@ -10,7 +10,7 @@
 
 ---
 
-This repository contains several samples illustrating use of Forge GraphQL API in context of PIM workflow:
+This repository contains several samples illustrating use of Forge GraphQL API in context of Fusion Data workflow:
 
 1. [Read the Complete Model Hierarchy of a Design](./1.Read%20the%20Complete%20Model%20Hierarchy%20of%20a%20Design) 
 
@@ -35,7 +35,7 @@ This repository contains several samples illustrating use of Forge GraphQL API i
 
 ## Notes
 
-Though the samples start with the `hubs(){}` query, there are many other options for you. The easiest is to check the **QUERIES** section on the **DOCS** tab in the [PIM GraphQL Explorer](https://forge.autodesk.com/en/docs/pim-graphql/v1/playground/pim-graphql-explorer/) to see what other starting points are available.
+Though the samples start with the `hubs(){}` query, there are many other options for you. The easiest is to check the **QUERIES** section on the **DOCS** tab in the [Fusion Data GraphQL Explorer](https://forge.autodesk.com/en/docs/pim-graphql/v1/playground/pim-graphql-explorer/) to see what other starting points are available.
 
 ![Query](./readme/queries.png)
 

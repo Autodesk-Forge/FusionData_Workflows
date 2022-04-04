@@ -42,7 +42,7 @@ The workflow can be achieved following these steps:
 1. Get the root component and its references based on the hub, project and file name
 3. Keep gathering the references for the child components
 
-## PIM API Query
+## Fusion Data API Query
 
 In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design file to extract the assembly hierachy
 
@@ -89,4 +89,4 @@ query GetModelHierarchy($hubName: String!, $projectName: String!, $fileName: Str
 
 -----------
 
-Please refer to this page for more details: [PIM API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
+Please refer to this page for more details: [Fusion Data API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
