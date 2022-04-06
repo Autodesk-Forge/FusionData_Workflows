@@ -9,7 +9,7 @@ npm i
 You will need to set the value of `clientId` and `clientSecret` variables in `index.js` based on your **Forge app**'s credentials and make sure that the `CallBack URL` of the app is set to `http://localhost:3000/callback/oauth` as shown in the picture\
 ![Get 3-legged token](./readme/ForgeCredentials.png)
 
-You will also need to set the value of `hubName`, `projectName` and `fileName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Forge GraphQL API** itself\
+You will also need to set the value of `hubName`, `projectName` and `fileName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Fusion Data API** itself\
 ![Get version id](./readme/inputs.png)
 
 
@@ -76,4 +76,4 @@ query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!)
 
 -----------
 
-Please refer to this page for more details: [Fusion Data API GraphQL Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
+Please refer to this page for more details: [Fusion Data API Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)

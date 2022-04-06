@@ -28,7 +28,7 @@ export default class App {
 
     if (response.data.errors) {
       let formatted = JSON.stringify(response.data.errors, null, 2);
-      console.log(`GraphQL API error:\n${formatted}`);
+      console.log(`API error:\n${formatted}`);
     }
 
     return response;
