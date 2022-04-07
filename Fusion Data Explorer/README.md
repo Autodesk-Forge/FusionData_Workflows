@@ -24,6 +24,14 @@ Once you logged in with your Autodesk account in the browser, this should appear
 
 ![GraphiQL](./readme/GraphiQL.png)
 
+Now you can check the documentation
+
+![Docs](./readme/Docs.png)
+
+And run queries
+
+![Queries](./readme/Queries.png)
+
 -----------
 
 Please refer to this page for more details: [Fusion Data API Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
