@@ -1,0 +1,30 @@
+# Fusion Data Explorer
+
+The sample is using this [GraphiQL project](https://github.com/graphql/graphiql) that makes it really easy to discover the Fusion Data API
+
+## Setting up your test
+In the **terminal** run this to install all the necessary components
+```
+npm i
+``` 
+
+You will need to set the value of `clientId` and `clientSecret` variables in `index.js` based on your **Forge app**'s credentials and make sure that the `CallBack URL` of the app is set to `http://localhost:3000/callback/oauth` as shown in the picture\
+![Get 3-legged token](./readme/ForgeCredentials.png)
+
+## Running the test
+In a **terminal**, you can run the test with:
+```
+npm start
+```
+As instructed in the console, you'll need to open a web browser and navigate to http://localhost:3000 in order to log into your Autodesk account 
+
+## Output
+
+Once you logged in with your Autodesk account in the browser, this should appear:
+
+![GraphiQL](./readme/GraphiQL.png)
+
+-----------
+
+Please refer to this page for more details: [Fusion Data API Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
+
