@@ -33,6 +33,6 @@ printInfo(info.components, info.rootId, "");
 function printInfo (components, componentId, indent) {
   console.log(indent + components[componentId].name);
   for (let occurrence of components[componentId].modelOccurrences.results) {
-    printInfo(components, occurrence.component.id, indent + "  ");
+    printInfo(components, occurrence.componentVersion.id, indent + "  ");
   }
 }
