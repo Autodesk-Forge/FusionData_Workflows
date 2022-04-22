@@ -52,12 +52,12 @@ export default class App {
                           name
                           tipVersion {
                             ... on DesignFileVersion {
-                              rootComponent {
+                              rootComponentVersion {
                                 id
                                 name 
                                 modelOccurrences {
                                   results {
-                                    component {
+                                    componentVersion {
                                       id
                                       name
                                     }
@@ -86,7 +86,7 @@ export default class App {
         .hubs.results[0]
         .projects.results[0]
         .rootFolder.items.results[0]
-        .tipVersion.rootComponent;
+        .tipVersion.rootComponentVersion;
       let components = {};
       components[rootComponent.id] = rootComponent;
 
@@ -104,7 +104,7 @@ export default class App {
 
   async getSubComponents(components, modelReferences) {
     for (let occurrence of modelReferences) {
-      components[occurrence.component.id] ||= {};
+      components[occurrence.componentVersion.id] ||= {};
     }
 
     let query = "query {";
@@ -119,7 +119,7 @@ export default class App {
           name
           modelOccurrences {
             results {
-              component {
+              componentVersion {
                 id
                 name
               }

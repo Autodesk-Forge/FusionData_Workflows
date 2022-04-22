@@ -54,13 +54,10 @@ export default class App {
                           ... on DesignFile {
                             tipVersion {
                               ... on DesignFileVersion {
-                                rootComponent {
+                                rootComponentVersion {
                                   thumbnail {
                                     status
-                                    variants {
-                                      size
-                                      url
-                                    }
+                                    mediumImageUrl
                                   }          
                                 }
                               }
@@ -85,14 +82,14 @@ export default class App {
           .hubs.results[0]
           .projects.results[0]
           .rootFolder.items.results[0]
-          .tipVersion.rootComponent
+          .tipVersion.rootComponentVersion
           .thumbnail;
 
-        if (thumbnail.status === "success") {
+        if (thumbnail.status === "SUCCESS") {
           // If the thumbnail generation finished then we can download it
           // from the url
           let thumbnailPath = path.resolve('thumbnail.png');
-          await this.downloadImage(thumbnail.variants[0].url, thumbnailPath);
+          await this.downloadImage(thumbnail.mediumImageUrl, thumbnailPath);
           return "file://" + encodeURI(thumbnailPath);
         } else {
           console.log("Extracting thumbnail … (it may take a few seconds)")
