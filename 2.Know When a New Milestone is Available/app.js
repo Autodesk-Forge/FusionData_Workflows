@@ -13,7 +13,7 @@ app.use(express.json());
 // Application constructor 
 export default class App {
   constructor(accessToken, ngrokUrl) {
-    this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
+    this.graphAPI = 'https://developer.api.autodesk.com/fusiondata/graphql';
     this.accessToken = accessToken;
     this.port = 3000;
     this.callbackPath = '/callback';
