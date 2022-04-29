@@ -51,16 +51,12 @@ export default class App {
                     rootFolder {
                       items(filter:{name:$fileName}) {
                         results {
-                          ... on DesignFile {
+                          ... on Component {
                             tipVersion {
-                              ... on DesignFileVersion {
-                                rootComponentVersion {
-                                  thumbnail {
-                                    status
-                                    mediumImageUrl
-                                  }          
-                                }
-                              }
+                              thumbnail {
+                                status
+                                mediumImageUrl
+                              }          
                             }
                           }
                         }
@@ -82,8 +78,7 @@ export default class App {
           .hubs.results[0]
           .projects.results[0]
           .rootFolder.items.results[0]
-          .tipVersion.rootComponentVersion
-          .thumbnail;
+          .tipVersion.thumbnail;
 
         if (thumbnail.status === "SUCCESS") {
           // If the thumbnail generation finished then we can download it

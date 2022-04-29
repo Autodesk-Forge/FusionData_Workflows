@@ -48,20 +48,16 @@ export default class App {
                   rootFolder {
                     items(filter:{name:$fileName}) {
                       results {
-                        ... on DesignFile {
+                        ... on Component {
                           name
                           tipVersion {
-                            ... on DesignFileVersion {
-                              rootComponentVersion {
-                                id
-                                name 
-                                modelOccurrences {
-                                  results {
-                                    componentVersion {
-                                      id
-                                      name
-                                    }
-                                  }
+                            id
+                            name 
+                            modelOccurrences {
+                              results {
+                                componentVersion {
+                                  id
+                                  name
                                 }
                               }
                             }
@@ -86,7 +82,7 @@ export default class App {
         .hubs.results[0]
         .projects.results[0]
         .rootFolder.items.results[0]
-        .tipVersion.rootComponentVersion;
+        .tipVersion;
       let components = {};
       components[rootComponent.id] = rootComponent;
 

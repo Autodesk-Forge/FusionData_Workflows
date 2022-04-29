@@ -116,11 +116,8 @@ export default class App {
                 rootFolder {
                   items(filter:{name:$fileName}) {
                     results {
-                      ... on DesignFile {
-                        name
-                        rootComponent {
-                          id
-                        }
+                      ... on Component {
+                        id
                       }
                     }
                   }
@@ -140,8 +137,7 @@ export default class App {
     let rootComponent = response.data.data
       .hubs.results[0]
       .projects.results[0]
-      .rootFolder.items.results[0]
-      .rootComponent;
+      .rootFolder.items.results[0];
 
     return rootComponent.id;
   }
