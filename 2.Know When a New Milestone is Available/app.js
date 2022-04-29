@@ -13,7 +13,7 @@ app.use(express.json());
 // Application constructor 
 export default class App {
   constructor(accessToken, ngrokUrl) {
-    this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
+    this.graphAPI = 'https://developer.api.autodesk.com/fusiondata/graphql';
     this.accessToken = accessToken;
     this.port = 3000;
     this.callbackPath = '/callback';
@@ -116,11 +116,8 @@ export default class App {
                 rootFolder {
                   items(filter:{name:$fileName}) {
                     results {
-                      ... on DesignFile {
-                        name
-                        rootComponent {
-                          id
-                        }
+                      ... on Component {
+                        id
                       }
                     }
                   }
@@ -140,8 +137,7 @@ export default class App {
     let rootComponent = response.data.data
       .hubs.results[0]
       .projects.results[0]
-      .rootFolder.items.results[0]
-      .rootComponent;
+      .rootFolder.items.results[0];
 
     return rootComponent.id;
   }

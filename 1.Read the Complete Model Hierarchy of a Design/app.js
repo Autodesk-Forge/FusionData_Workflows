@@ -4,7 +4,7 @@ import axios from "axios";
 // Application constructor 
 export default class App {
   constructor(accessToken) {
-    this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
+    this.graphAPI = 'https://developer.api.autodesk.com/fusiondata/graphql';
     this.accessToken = accessToken;
   }
 
@@ -48,20 +48,16 @@ export default class App {
                   rootFolder {
                     items(filter:{name:$fileName}) {
                       results {
-                        ... on DesignFile {
+                        ... on Component {
                           name
                           tipVersion {
-                            ... on DesignFileVersion {
-                              rootComponentVersion {
-                                id
-                                name 
-                                modelOccurrences {
-                                  results {
-                                    componentVersion {
-                                      id
-                                      name
-                                    }
-                                  }
+                            id
+                            name 
+                            modelOccurrences {
+                              results {
+                                componentVersion {
+                                  id
+                                  name
                                 }
                               }
                             }
@@ -86,7 +82,7 @@ export default class App {
         .hubs.results[0]
         .projects.results[0]
         .rootFolder.items.results[0]
-        .tipVersion.rootComponentVersion;
+        .tipVersion;
       let components = {};
       components[rootComponent.id] = rootComponent;
 

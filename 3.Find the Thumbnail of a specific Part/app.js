@@ -8,7 +8,7 @@ import path from "path";
 // Application constructor 
 export default class App {
   constructor(accessToken) {
-    this.graphAPI = 'https://developer.api.autodesk.com/manufacturing/graphql/v1';
+    this.graphAPI = 'https://developer.api.autodesk.com/fusiondata/graphql';
     this.accessToken = accessToken;
   }
 
@@ -51,16 +51,12 @@ export default class App {
                     rootFolder {
                       items(filter:{name:$fileName}) {
                         results {
-                          ... on DesignFile {
+                          ... on Component {
                             tipVersion {
-                              ... on DesignFileVersion {
-                                rootComponentVersion {
-                                  thumbnail {
-                                    status
-                                    mediumImageUrl
-                                  }          
-                                }
-                              }
+                              thumbnail {
+                                status
+                                mediumImageUrl
+                              }          
                             }
                           }
                         }
@@ -82,8 +78,7 @@ export default class App {
           .hubs.results[0]
           .projects.results[0]
           .rootFolder.items.results[0]
-          .tipVersion.rootComponentVersion
-          .thumbnail;
+          .tipVersion.thumbnail;
 
         if (thumbnail.status === "SUCCESS") {
           // If the thumbnail generation finished then we can download it
