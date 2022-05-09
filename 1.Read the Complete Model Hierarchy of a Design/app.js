@@ -4,7 +4,7 @@ import axios from "axios";
 // Application constructor 
 export default class App {
   constructor(accessToken) {
-    this.graphAPI = 'https://developer.api.autodesk.com/fusiondata/graphql';
+    this.graphAPI = 'https://developer.api.autodesk.com/fusiondata/2022-04/graphql';
     this.accessToken = accessToken;
   }
 
