@@ -78,19 +78,19 @@ export default class App {
         }
       )
 
-      let rootComponent = response.data.data
+      let rootComponentVersion = response.data.data
         .hubs.results[0]
         .projects.results[0]
         .rootFolder.items.results[0]
         .tipVersion;
-      let components = {};
-      components[rootComponent.id] = rootComponent;
+      let componentVersions = {};
+      componentVersions[rootComponentVersion.id] = rootComponentVersion;
 
-      await this.getSubComponents(components, rootComponent.modelOccurrences.results);
+      await this.getSubComponents(componentVersions, rootComponentVersion.modelOccurrences.results);
 
       return {
-        rootId: rootComponent.id,
-        components
+        rootId: rootComponentVersion.id,
+        componentVersions: componentVersions
       };
     } catch (err) {
       console.log("There was an issue: " + err.message)
@@ -98,19 +98,19 @@ export default class App {
   }
 // </getModelHierarchy>  
 
-  async getSubComponents(components, modelReferences) {
+  async getSubComponents(componentVersions, modelReferences) {
     for (let occurrence of modelReferences) {
-      components[occurrence.componentVersion.id] ||= {};
+      componentVersions[occurrence.componentVersion.id] ||= {};
     }
 
     let query = "query {";
     let counter = 0;
-    for (let componentId in components) {
+    for (let componentVersionId in componentVersions) {
       // Get info about components we only have the id's of
       // but no information yet about the component (e.g. its name)
-      if (!components[componentId]?.name) {
+      if (!componentVersions[componentVersionId]?.name) {
         query += `
-        _${counter++}: componentVersion(componentVersionId: "${componentId}") {
+        _${counter++}: componentVersion(componentVersionId: "${componentVersionId}") {
           id
           name
           modelOccurrences {
@@ -132,13 +132,13 @@ export default class App {
     }
 
     let response = await this.sendQuery(query);
-    for (let component of Object.values(response.data.data)) {
-      components[component.id] = component;
+    for (let componentVersion of Object.values(response.data.data)) {
+      componentVersions[componentVersion.id] = componentVersion;
     }
 
-    for (let component of Object.values(response.data.data)) {
-      if (component.modelOccurrences.results.length > 0) {
-        await this.getSubComponents(components, component.modelOccurrences.results);
+    for (let componentVersion of Object.values(response.data.data)) {
+      if (componentVersion.modelOccurrences.results.length > 0) {
+        await this.getSubComponents(componentVersions, componentVersion.modelOccurrences.results);
       }
     }
   }
