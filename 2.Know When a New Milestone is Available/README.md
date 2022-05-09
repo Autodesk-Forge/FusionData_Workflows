@@ -34,18 +34,19 @@ Listening to the events on http://localhost:3000 => https://fc4d-86-2-185-49.ngr
 Create a milestone in Fusion 360 and wait for the event to be listed here:
 Received a notification with following content:
 {
-  "id": "8f2ac3ea-b277-43ea-8b6d-83b5fae36380",
-  "source": "urn:com.autodesk.forge:clientid:BDFN4GFd5RKCFGX9BRZ1hldVdDBAiMAE",
+  "id": "fd3bd89e-201e-4824-867a-7543a3b47e73",
+  "source": "urn:com.autodesk.forge:clientid:cF2pIBIYqEpzS0d1gEicgU0nR0acgrjG",
   "specversion": "1.0",
   "type": "autodesk.data.pim:milestone.created-1.0.0",
-  "subject": "urn:autodesk.data.pim:component:comp~co.1069EFHgQkyeThLU-h43DA~HIxLpzPJujopTosn3eTm7i_aga~AdIqaHM9jr7xACmKkt4mdJ~D4RvOAOi6bOZrxfqjQlfK2",
-  "time": "2022-02-04T09:30:59.798Z",
+  "subject": "urn:autodesk.data.pim:component:Y29tcH5jby4xMDY5RUZIZ1FreWVUaExVLWg0M0RBfkhJeExwelBKdWpvcFRvc24zZVRtN2lfYWdhfn4",
+  "time": "2022-05-09T16:00:17.287Z",
   "data": {
-    "componentid": "comp~co.1069EFHgQkyeThLU-h43DA~HIxLpzPJujopTosn3eTm7i_aga~AdIqaHM9jr7xACmKkt4mdJ~D4RvOAOi6bOZrxfqjQlfK2",
-    "milestonename": "Milestone V26",
+    "componentid": "Y29tcH5jby4xMDY5RUZIZ1FreWVUaExVLWg0M0RBfkhJeExwelBKdWpvcFRvc24zZVRtN2lfYWdhfn4",
+    "milestonename": "Milestone V48",
     "eventtype": "MILESTONE_CREATED"
   },
-  "dataschema": "https://forge.autodesk.com/schemas/pim-event-schema-v1.0.0.json"
+  "dataschema": "https://forge.autodesk.com/schemas/pim-event-schema-v1.0.0.json",
+  "traceparent": "00-5d062bba301551d19e86db826d135397-e440e5a6d791d97c-01"
 }
 ```
 Here is how you can  create a milestone in **Fusion 360**\
