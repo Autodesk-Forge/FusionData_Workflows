@@ -76,4 +76,4 @@ query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!)
 
 -----------
 
-Please refer to this page for more details: [Fusion Data API Docs](https://forge.autodesk.com/en/docs/pim-graphql/v1/developers_guide/overview/)
+Please refer to this page for more details: [Fusion Data API Docs](https://forge.autodesk.com/en/docs/fusiondata/v1/developers_guide/overview/)
