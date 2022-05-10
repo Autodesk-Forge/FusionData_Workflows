@@ -48,19 +48,12 @@ query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!)
           rootFolder {
             items(filter:{name:$fileName}) {
               results {
-                ... on DesignFile {
+                ... on Component {
                   tipVersion {
-                    ... on DesignFileVersion {
-                      rootComponent {
-                        thumbnail {
-                          status
-                          variants {
-                            size
-                            url
-                          }
-                        }          
-                      }
-                    }
+                    thumbnail {
+                      status
+                      mediumImageUrl
+                    }          
                   }
                 }
               }
