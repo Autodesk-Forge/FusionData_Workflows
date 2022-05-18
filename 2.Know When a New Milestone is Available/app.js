@@ -72,7 +72,7 @@ export default class App {
 
       let webhookId = response.data.data.createWebhook.id;
 
-      console.log('Created webhook ' + webhookId);
+      console.log('Created webhook ' + webhookId + ' for component ' + rootComponentId);
 
       return webhookId;
     } catch (err) {
