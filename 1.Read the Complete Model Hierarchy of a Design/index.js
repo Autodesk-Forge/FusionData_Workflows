@@ -28,11 +28,11 @@ let info = await myForgeApp.getModelHierarchy(
 );
 
 console.log("Model hierarchy:");
-printInfo(info.components, info.rootId, "");
+printInfo(info.componentVersions, info.rootId, "");
 
-function printInfo (components, componentId, indent) {
-  console.log(indent + components[componentId].name);
-  for (let occurrence of components[componentId].modelOccurrences.results) {
-    printInfo(components, occurrence.componentVersion.id, indent + "  ");
+function printInfo (componentVersions, componentVersionId, indent) {
+  console.log(indent + componentVersions[componentVersionId].name);
+  for (let occurrence of componentVersions[componentVersionId].modelOccurrences.results) {
+    printInfo(componentVersions, occurrence.componentVersion.id, indent + "  ");
   }
 }
