@@ -27,8 +27,11 @@ let info = await myForgeApp.getModelHierarchy(
   fileName
 );
 
-console.log("Model hierarchy:");
-printInfo(info.componentVersions, info.rootId, "");
+if (info) {
+  console.log("Model hierarchy:");
+  printInfo(info.componentVersions, info.rootId, "");
+} 
+
 
 function printInfo (componentVersions, componentVersionId, indent) {
   console.log(indent + componentVersions[componentVersionId].name);

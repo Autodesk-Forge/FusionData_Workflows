@@ -104,6 +104,22 @@ export default class App {
   }
 // </unsubscribeToEvent>
 
+  getComponent(response, hubName, projectName, fileName) {
+    let hubs = response.data.data.hubs.results;
+    if (hubs.length < 1)
+      throw { message: `Hub "${hubName}" does not exist` }
+      
+    let projects = hubs[0].projects.results;
+    if (projects.length < 1)
+      throw { message: `Project "${projectName}" does not exist` }
+
+    let files = projects[0].rootFolder.items.results;
+    if (files.length < 1)
+      throw { message: `File "${fileName}" does not exist` }
+
+    return files[0];
+  }
+
   async getRootComponentId(hubName, projectName, fileName) {
     let response = await this.sendQuery(
       `query GetRootComponent($hubName: String!, $projectName: String!, $fileName: String!) {
@@ -134,10 +150,9 @@ export default class App {
       }
     )
 
-    let rootComponent = response.data.data
-      .hubs.results[0]
-      .projects.results[0]
-      .rootFolder.items.results[0];
+    let rootComponent = this.getComponent(
+      response, hubName, projectName, fileName
+    );
 
     return rootComponent.id;
   }

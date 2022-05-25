@@ -38,6 +38,22 @@ export default class App {
     return response;
   }
 
+  getComponentVersionThumbnail(response, hubName, projectName, fileName) {
+    let hubs = response.data.data.hubs.results;
+    if (hubs.length < 1)
+      throw { message: `Hub "${hubName}" does not exist` }
+      
+    let projects = hubs[0].projects.results;
+    if (projects.length < 1)
+      throw { message: `Project "${projectName}" does not exist` }
+
+    let files = projects[0].rootFolder.items.results;
+    if (files.length < 1)
+      throw { message: `File "${fileName}" does not exist` }
+
+    return files[0].tipVersion.thumbnail;
+  }
+
 // <downloadThumbnail>
   async downloadThumbnail(hubName, projectName, fileName) {
     try {
@@ -74,11 +90,9 @@ export default class App {
           }
         )
 
-        let thumbnail = response.data.data
-          .hubs.results[0]
-          .projects.results[0]
-          .rootFolder.items.results[0]
-          .tipVersion.thumbnail;
+        let thumbnail = this.getComponentVersionThumbnail(
+          response, hubName, projectName, fileName
+        );
 
         if (thumbnail.status === "SUCCESS") {
           // If the thumbnail generation finished then we can download it

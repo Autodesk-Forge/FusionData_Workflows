@@ -34,6 +34,22 @@ export default class App {
     return response;
   }
 
+  getComponentVersion(response, hubName, projectName, fileName) {
+    let hubs = response.data.data.hubs.results;
+    if (hubs.length < 1)
+      throw { message: `Hub "${hubName}" does not exist` }
+      
+    let projects = hubs[0].projects.results;
+    if (projects.length < 1)
+      throw { message: `Project "${projectName}" does not exist` }
+
+    let files = projects[0].rootFolder.items.results;
+    if (files.length < 1)
+      throw { message: `File "${fileName}" does not exist` }
+
+    return files[0].tipVersion;
+  }
+
 // <getModelHierarchy>
   async getModelHierarchy(hubName, projectName, fileName) {
     try {
@@ -78,11 +94,9 @@ export default class App {
         }
       )
 
-      let rootComponentVersion = response.data.data
-        .hubs.results[0]
-        .projects.results[0]
-        .rootFolder.items.results[0]
-        .tipVersion;
+      let rootComponentVersion = this.getComponentVersion(
+        response, hubName, projectName, fileName
+      );
       let componentVersions = {};
       componentVersions[rootComponentVersion.id] = rootComponentVersion;
 
