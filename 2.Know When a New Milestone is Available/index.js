@@ -29,13 +29,12 @@ var myForgeApp = new MyApp(
 
 await myForgeApp.unsubscribeToEvent(eventType);
 
-await myForgeApp.subscribeToEvent(hubName, projectName, fileName, eventType);
+if (await myForgeApp.subscribeToEvent(hubName, projectName, fileName, eventType)) {
+  // Use the startMonitoringEvents method to report events to the console.
+  await myForgeApp.startMonitoringEvents();
 
-// Use the startMonitoringEvents method to report events to the console.
-await myForgeApp.startMonitoringEvents();
-
-console.log("\nCreate a milestone in Fusion 360 and wait for the event to be listed here:")
-
+  console.log("\nCreate a milestone in Fusion 360 and wait for the event to be listed here:")
+}
 
 
 

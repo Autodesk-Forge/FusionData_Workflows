@@ -27,7 +27,8 @@ const thumbnailPath = await myForgeApp.downloadThumbnail(
   fileName
 );
 
-console.log("Open thumbnail saved here: " + thumbnailPath);
+if (thumbnailPath)
+  console.log("Open thumbnail saved here: " + thumbnailPath);
 
 
 
