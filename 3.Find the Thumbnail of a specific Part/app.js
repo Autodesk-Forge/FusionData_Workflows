@@ -38,7 +38,7 @@ export default class App {
     return response;
   }
 
-  getComponentVersionThumbnail(response, hubName, projectName, fileName) {
+  getComponentVersionThumbnail(response, hubName, projectName, componentName) {
     let hubs = response.data.data.hubs.results;
     if (hubs.length < 1)
       throw { message: `Hub "${hubName}" does not exist` }
@@ -49,23 +49,23 @@ export default class App {
 
     let files = projects[0].rootFolder.items.results;
     if (files.length < 1)
-      throw { message: `File "${fileName}" does not exist` }
+      throw { message: `Component "${componentName}" does not exist` }
 
     return files[0].tipVersion.thumbnail;
   }
 
 // <downloadThumbnail>
-  async downloadThumbnail(hubName, projectName, fileName) {
+  async downloadThumbnail(hubName, projectName, componentName) {
     try {
       while (true) {
         let response = await this.sendQuery(
-          `query GetThumbnail($hubName: String!, $projectName: String!, $fileName: String!) {
+          `query GetThumbnail($hubName: String!, $projectName: String!, $componentName: String!) {
             hubs(filter:{name:$hubName}) {
               results {
                 projects(filter:{name:$projectName}) {
                   results {
                     rootFolder {
-                      items(filter:{name:$fileName}) {
+                      items(filter:{name:$componentName}) {
                         results {
                           ... on Component {
                             tipVersion {
@@ -86,12 +86,12 @@ export default class App {
           {
             hubName,
             projectName,
-            fileName
+            componentName
           }
         )
 
         let thumbnail = this.getComponentVersionThumbnail(
-          response, hubName, projectName, fileName
+          response, hubName, projectName, componentName
         );
 
         if (thumbnail.status === "SUCCESS") {

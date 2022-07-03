@@ -47,9 +47,9 @@ export default class App {
   }
 
 // <subscribeToEvent>
-  async subscribeToEvent(hubName, projectName, fileName, eventType) {
+  async subscribeToEvent(hubName, projectName, componentName, eventType) {
     try {
-      let rootComponentId = await this.getRootComponentId(hubName, projectName, fileName);
+      let rootComponentId = await this.getRootComponentId(hubName, projectName, componentName);
 
       let response = await this.sendQuery(
         `mutation CreateWebhook($componentId: ID!, $eventType: WebhookEventTypeEnum!, $callbackURL: String!) {
@@ -104,7 +104,7 @@ export default class App {
   }
 // </unsubscribeToEvent>
 
-  getComponent(response, hubName, projectName, fileName) {
+  getComponent(response, hubName, projectName, componentName) {
     let hubs = response.data.data.hubs.results;
     if (hubs.length < 1)
       throw { message: `Hub "${hubName}" does not exist` }
@@ -115,14 +115,14 @@ export default class App {
 
     let files = projects[0].rootFolder.items.results;
     if (files.length < 1)
-      throw { message: `File "${fileName}" does not exist` }
+      throw { message: `Component "${componentName}" does not exist` }
 
     return files[0];
   }
 
-  async getRootComponentId(hubName, projectName, fileName) {
+  async getRootComponentId(hubName, projectName, componentName) {
     let response = await this.sendQuery(
-      `query GetRootComponent($hubName: String!, $projectName: String!, $fileName: String!) {
+      `query GetRootComponent($hubName: String!, $projectName: String!, $componentName: String!) {
         hubs(filter:{name:$hubName}) {
           results {
             name
@@ -130,7 +130,7 @@ export default class App {
               results {
                 name
                 rootFolder {
-                  items(filter:{name:$fileName}) {
+                  items(filter:{name:$componentName}) {
                     results {
                       ... on Component {
                         id
@@ -146,12 +146,12 @@ export default class App {
       {
         hubName,
         projectName,
-        fileName
+        componentName
       }
     )
 
     let rootComponent = this.getComponent(
-      response, hubName, projectName, fileName
+      response, hubName, projectName, componentName
     );
 
     return rootComponent.id;

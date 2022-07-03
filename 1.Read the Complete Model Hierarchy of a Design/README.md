@@ -9,7 +9,7 @@ npm i
 You will need to set the value of `clientId` and `clientSecret` variables in `index.js` based on your **Forge app**'s credentials and make sure that the `CallBack URL` of the app is set to `http://localhost:3000/callback/oauth` as shown in the picture\
 ![Get 3-legged token](./readme/ForgeCredentials.png)
 
-You will also need to set the value of `hubName`, `projectName` and `fileName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Fusion Data API** itself\
+You will also need to set the value of `hubName`, `projectName` and `componentName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Fusion Data API** itself\
 ![Get version id](./readme/inputs.png)
 
 ### NOTE
@@ -47,7 +47,7 @@ The workflow can be achieved following these steps:
 In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design file to extract the assembly hierachy
 
 ```
-query GetModelHierarchy($hubName: String!, $projectName: String!, $fileName: String!) {
+query GetModelHierarchy($hubName: String!, $projectName: String!, $componentName: String!) {
   hubs(filter:{name:$hubName}) {
     results {
       name
@@ -55,7 +55,7 @@ query GetModelHierarchy($hubName: String!, $projectName: String!, $fileName: Str
         results {
           name
           rootFolder {
-            items(filter:{name:$fileName}) {
+            items(filter:{name:$componentName}) {
               results {
                 ... on Component {
                   name
