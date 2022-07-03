@@ -8,7 +8,7 @@ const clientId = '<YOUR_CLIENT_ID>';
 const clientSecret = '<YOUR_CLIENT_SECRET>';
 const hubName = '<YOUR_HUB_NAME>';
 const projectName = '<YOUR_PROJECT_NAME>';
-const fileName = '<YOUR_FILE_NAME>';
+const componentName = '<YOUR_COMPONENT_NAME>';
 const eventType = 'MILESTONE_CREATED';
 
 // In a terminal, start ngrok with the following command: 
@@ -29,7 +29,7 @@ var myForgeApp = new MyApp(
 
 await myForgeApp.unsubscribeToEvent(eventType);
 
-if (await myForgeApp.subscribeToEvent(hubName, projectName, fileName, eventType)) {
+if (await myForgeApp.subscribeToEvent(hubName, projectName, componentName, eventType)) {
   // Use the startMonitoringEvents method to report events to the console.
   await myForgeApp.startMonitoringEvents();
 

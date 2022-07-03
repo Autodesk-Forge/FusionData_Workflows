@@ -10,10 +10,12 @@ export default class App {
 
   getRequestHeaders() {
     return {
-      "Content-type": "application/json",
+      "Content-type": "application/json; charset=utf-8",
       "Authorization": "Bearer " + this.accessToken,
     };
   }
+
+
 
   async sendQuery(query, variables) {
     let response = await axios({
@@ -34,7 +36,7 @@ export default class App {
     return response;
   }
 
-  getComponentVersion(response, hubName, projectName, fileName) {
+  getComponentVersion(response, hubName, projectName, componentName) {
     let hubs = response.data.data.hubs.results;
     if (hubs.length < 1)
       throw { message: `Hub "${hubName}" does not exist` }
@@ -45,16 +47,16 @@ export default class App {
 
     let files = projects[0].rootFolder.items.results;
     if (files.length < 1)
-      throw { message: `File "${fileName}" does not exist` }
+      throw { message: `Component "${componentName}" does not exist` }
 
     return files[0].tipVersion;
   }
 
 // <getModelHierarchy>
-  async getModelHierarchy(hubName, projectName, fileName) {
+  async getModelHierarchy(hubName, projectName, componentName) {
     try {
       let response = await this.sendQuery(
-        `query GetModelHierarchy($hubName: String!, $projectName: String!, $fileName: String!) {
+        `query GetModelHierarchy($hubName: String!, $projectName: String!, $componentName: String!) {
           hubs(filter:{name:$hubName}) {
             results {
               name
@@ -62,7 +64,7 @@ export default class App {
                 results {
                   name
                   rootFolder {
-                    items(filter:{name:$fileName}) {
+                    items(filter:{name:$componentName}) {
                       results {
                         ... on Component {
                           name
@@ -90,12 +92,12 @@ export default class App {
         {
           hubName,
           projectName,
-          fileName
+          componentName
         }
       )
 
       let rootComponentVersion = this.getComponentVersion(
-        response, hubName, projectName, fileName
+        response, hubName, projectName, componentName
       );
       let componentVersions = {};
       componentVersions[rootComponentVersion.id] = rootComponentVersion;

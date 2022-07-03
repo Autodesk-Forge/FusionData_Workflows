@@ -9,7 +9,7 @@ npm i
 You will need to set the value of `clientId` and `clientSecret` variables in `index.js` based on your **Forge app**'s credentials and make sure that the `CallBack URL` of the app is set to `http://localhost:3000/callback/oauth` as shown in the picture\
 ![Get 3-legged token](./readme/ForgeCredentials.png)
 
-You will also need to set the value of `hubName`, `projectName` and `fileName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Fusion Data API** itself\
+You will also need to set the value of `hubName`, `projectName` and `componentName` variables. You can find them either in **Fusion Teams** web app, in **Fusion 360** or any other place that lets you navigate the contents of your **Autodesk** hubs and projects - including the **Fusion Data API** itself\
 ![Get version id](./readme/inputs.png)
 
 Then start **ngrok** that will provide a publicly available URL that the **Forge** webhook can send messages to, which then will be passed to your computer\
