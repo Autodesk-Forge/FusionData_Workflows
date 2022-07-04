@@ -32,13 +32,13 @@ Once the thumbnail has been downloaded, a link will be provided to it in the con
 
 The workflow can be achieved following these steps:
 
-1. Ask for the thumbnail of a specific model based on its hub, project and file name
+1. Ask for the thumbnail of a specific model based on its hub, project and component name
 2. If it's not available yet (status is "pending") then keep checking the latest status
 3. Once the status is "success" you can download the thumbnail using the url provided
 
 ## Fusion Data API Query
 
-In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design file to generate the thumbnail for
+In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design to generate the thumbnail for
 ```
 query GetThumbnail($hubName: String!, $projectName: String!, $componentName: String!) {
   hubs(filter:{name:$hubName}) {
