@@ -13,7 +13,7 @@ You will also need to set the value of `hubName`, `projectName` and `componentNa
 ![Get version id](./readme/inputs.png)
 
 ### NOTE
-This sample assumes that your design file is not nested within a folder.
+This sample assumes that your design is not nested within a folder.
 
 ## Running the test
 In a **terminal**, you can run the test with:
@@ -39,12 +39,12 @@ shapes
 
 The workflow can be achieved following these steps:
 
-1. Get the root component and its references based on the hub, project and file name
-3. Keep gathering the references for the child components
+1. Get the root component and its references based on the hub, project and component name
+2. Keep gathering the references for the child components
 
 ## Fusion Data API Query
 
-In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design file to extract the assembly hierachy
+In `app.js` file, the following GraphQL query traverses the hub, project and its rootfolder to find the design to extract the assembly hierachy from
 
 ```
 query GetModelHierarchy($hubName: String!, $projectName: String!, $componentName: String!) {
