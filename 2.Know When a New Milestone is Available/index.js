@@ -2,12 +2,11 @@ import MyApp from './app.js';
 import MyAuth from './auth.js';
 
 // Replace the string literal values with your own client id, client secret, 
-
+// hub name, project name and component name. 
 const clientId = '<YOUR_CLIENT_ID>';
 const clientSecret = '<YOUR_CLIENT_SECRET>';
 const hubName = '<YOUR_HUB_NAME>';
 const projectName = '<YOUR_PROJECT_NAME>';
-// hub name, project name and component name. 
 const componentName = '<YOUR_COMPONENT_NAME>';
 const eventType = 'MILESTONE_CREATED';
 
