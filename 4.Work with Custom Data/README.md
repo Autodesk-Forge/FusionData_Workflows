@@ -1,4 +1,4 @@
-# Work With Properties
+# Work With Custom Data
 
 ## Setting up your test
 In the **terminal** run this to install all the necessary components
